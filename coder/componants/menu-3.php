@@ -16,7 +16,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="close_session.php">Newborn charecteristics</a>
+            <a href="add-newborn.php">Newborn charecteristics</a>
         </li>
 
         <li class="nav-item">

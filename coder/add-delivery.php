@@ -77,12 +77,12 @@ include "../dist/function/patienthistoryinfo.inc.php";
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
                         					<span class="sr-only">Toggle navigation</span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
-                        				</button>
+                        				</button> -->
                                 <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
                         					<span class="sr-only">Toggle drawer</span>
                         					<span class="icon-bar"></span>
@@ -90,7 +90,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                         					<span class="icon-bar"></span>
                         				</button>
                                 <span class="navbar-page-title">
-                        					Obstetric information
+                        					Delivery information
                         				</span>
                             </div>
 
@@ -170,22 +170,12 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                 <div class="form-group">
                                   <div class="col-sm-12">
                                       <div class="form-material">
-                                          <select class="form-control" name="txtGravd" id="txtGravd">
-                                            <option value="1">1</option>
-                                              <option value="2">2</option>
-                                              <option value="3">3</option>
-                                              <option value="4">4</option>
-                                              <option value="5">5</option>
-                                              <option value="6">6</option>
-                                              <option value="7">7</option>
-                                              <option value="8">8</option>
-                                              <option value="9">9</option>
-                                              <option value="10">10</option>
-                                              <option value="11">11</option>
-                                              <option value="12">12</option>
-                                              <option value="13">13</option>
-                                              <option value="14">14</option>
-                                              <option value="15">15</option>
+                                          <select class="form-control" name="txt_moddel" id="txt_moddel">
+                                            <option value="1" selected="selected">Normal delivery</option>
+                                            <option value="2">V/E</option>
+                                            <option value="3">F/E</option>
+                                            <option value="4">Caesarean section</option>
+                                            <option value="5">Vaginal breach</option>
                                           </select>
 
                                           <label for="material-text">Mode of delivery</label>
@@ -196,22 +186,14 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                 <div class="form-group">
                                   <div class="col-sm-12">
                                       <div class="form-material">
-                                          <select class="form-control" name="txtGravd" id="txtGravd">
-                                            <option value="1">1</option>
-                                              <option value="2">2</option>
-                                              <option value="3">3</option>
-                                              <option value="4">4</option>
-                                              <option value="5">5</option>
-                                              <option value="6">6</option>
-                                              <option value="7">7</option>
-                                              <option value="8">8</option>
-                                              <option value="9">9</option>
-                                              <option value="10">10</option>
-                                              <option value="11">11</option>
-                                              <option value="12">12</option>
-                                              <option value="13">13</option>
-                                              <option value="14">14</option>
-                                              <option value="15">15</option>
+                                          <select class="form-control" name="txt-typeba" id="txt-typeba">
+                                            <option value="99" selected="selected">No data</option>
+                                            <option value="1">Midwife</option>
+                                            <option value="2">Professional Nurse</option>
+                                            <option value="3">Medical student</option>
+                                            <option value="4">Medical officer</option>
+                                            <option value="5">Registrar</option>
+                                            <option value="6">Obstetrician</option>
                                           </select>
 
                                           <label for="material-text">Type of birth attendant</label>
@@ -299,10 +281,51 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   </div>
                                 </div>
 
+                                <h3>Maternal separation</h3>
 
+                                <div class="form-group" style="padding-top: 20px;">
+                                  <div class="col-sm-12">
+                                      <div class="form-material">
+                                        <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php print date('Y-m-d');?>">
+                                        <label for="example-datepicker4">Transfer date <span style="color: red;">**</span></label>
+                                      </div>
+                                  </div>
+                                </div>
 
+                                <div class="form-group">
+                                  <div class="col-xs-12">
+                                    <label for="material-text">Transfer out</label><br>
+                                    <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                      <input type="radio" name="radio-mt" id="radio-mt1" value="0" onclick="toggle_value('txtMatrans', 0);" checked /><span></span> No
+                                    </label>&nbsp;&nbsp;
+                                    <label class="css-input css-radio css-radio-lg css-radio-success">
+                                      <input type="radio" name="radio-mt" id="radio-mt2" value="1" onclick="toggle_value('txtMatrans', 1);" /><span></span> Yes
+                                    </label>
+                                  </div>
+                                </div>
 
+                                <div class="matersepinfo" style="display:none; padding-top: 20px;">
+                                  <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="form-material">
+                                            <input class="form-control" type="text" id="txt-mt-facility" name="txt-mt-facility" placeholder="Name of transfer facility" />
+                                            <label for="material-text">Transfer facility&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-app-teal-outline" type="button" onclick="autofill_unknown('txt-mt-facility')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label></label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
 
+                                <div class="form-group">
+                                  <div class="col-xs-12">
+                                    <label for="material-text">Maternal death</label><br>
+                                    <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                      <input type="radio" name="radio-mdeath" id="radio-mdeath1" value="0" onclick="toggle_value('txtMadeath', 0);" checked /><span></span> No
+                                    </label>&nbsp;&nbsp;
+                                    <label class="css-input css-radio css-radio-lg css-radio-success">
+                                      <input type="radio" name="radio-mdeath" id="radio-mdeath2" value="1" onclick="toggle_value('txtMadeath', 1);" /><span></span> Yes
+                                    </label>
+                                  </div>
+                                </div>
 
 
 
@@ -356,7 +379,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
 
         <!-- Page JS Code -->
         <!-- <script src="../dist/page/obstetric/js/base_forms_validation.js"></script> -->
-        <script src="../dist/page/obstetric/js/custom-code.js"></script>
+        <script src="../dist/page/delivery/js/custom-code.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
         <script>
         $(function()
@@ -369,18 +392,3 @@ include "../dist/function/patienthistoryinfo.inc.php";
     </body>
 
 </html>
-
-<?php
-function calcutateAge($dob){
-
-        $dob = date("Y-m-d",strtotime($dob));
-
-        $dobObject = new DateTime($dob);
-        $nowObject = new DateTime();
-
-        $diff = $dobObject->diff($nowObject);
-
-        return $diff->y;
-
-}
-?>
