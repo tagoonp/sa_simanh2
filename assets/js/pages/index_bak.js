@@ -1,10 +1,22 @@
+/*
+Document: base_pages_dashboard.js
+Author: Rustheme
+Description: Custom JS code used in Dashboard Page (index.html)
+ */
+
 var BasePagesDashboard = function() {
 	// Chart.js Chart: http://www.chartjs.org/docs
 	var initDashChartJS = function() {
 
 		// Get Chart Containers
+		//  $dashChartLinesCnt1 = jQuery( '.js-chartjs-lines1' )[0].getContext( '2d' ),
+			// $dashChartLinesCnt2 = jQuery( '.js-chartjs-lines2' )[0].getContext( '2d' ),
 		var	$dashChartBarsCnt = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' ),
 			$dashChartLinesCnt3 = jQuery( '.js-chartjs-lines3' )[0].getContext( '2d' );
+			// $dashChartLinesCnt4 = jQuery( '.js-chartjs-lines4' )[0].getContext( '2d' ),
+			// $dashChartLinesCnt5 = jQuery( '.js-chartjs-lines5' )[0].getContext( '2d' ),
+			// $dashChartLinesCnt6 = jQuery( '.js-chartjs-lines6' )[0].getContext( '2d' ),
+			// $flotLive = jQuery( '.js-flot-live' );
 
 		// Set global chart options
 		var $globalOptions = {
@@ -148,6 +160,12 @@ var BasePagesDashboard = function() {
 			]
 		};
 
+		// Init Lines Chart
+		// $dashChartLines = new Chart( $dashChartLinesCnt1 ).Line( $dashChartLinesData, $globalOptions );
+
+		// Init Lines Chart 2
+		// $dashChartLines2 = new Chart( $dashChartLinesCnt2 ).Line( $dashChartLinesData2, $globalOptions );
+
 		// Init Lines Chart Bars
 		$dashChartBars = new Chart( $dashChartBarsCnt ).Bar( $dashChartLinesData3, {
 			scaleBeginAtZero: false,
@@ -178,6 +196,33 @@ var BasePagesDashboard = function() {
 			animation: false,
 		});
 
+		// "Company overview" widget
+		// Init Lines Chart 4
+		// $dashChartLines4 = new Chart( $dashChartLinesCnt4 ).Line( $dashChartLinesData7, {
+		// 	pointDot: false,
+		// 	showScale: false,
+		// 	maintainAspectRatio: false,
+		// 	responsive: true,
+		// 	animation: false,
+		// });
+
+		// Init Lines Chart 5
+		// $dashChartLines5 = new Chart( $dashChartLinesCnt5 ).Line( $dashChartLinesData8, {
+		// 	pointDot: false,
+		// 	showScale: false,
+		// 	maintainAspectRatio: false,
+		// 	responsive: true,
+		// 	animation: false,
+		// });
+
+		// Init Lines Chart 6
+		// $dashChartLines6 = new Chart( $dashChartLinesCnt6 ).Line( $dashChartLinesData9, {
+		// 	pointDot: false,
+		// 	showScale: false,
+		// 	maintainAspectRatio: false,
+		// 	responsive: true,
+		// 	animation: false,
+		// });
 
 		// Live Chart
 		var $dataLive = [];
@@ -208,6 +253,51 @@ var BasePagesDashboard = function() {
 			return res;
 		}
 
+		// Update live chart
+		// function updateChartLive() {
+		// 	$chartLive.setData( [getRandomData()] );
+		// 	$chartLive.draw();
+		// 	setTimeout( updateChartLive, 70 );
+		// }
+
+		// Init live chart
+		// var $chartLive = jQuery.plot( $flotLive,
+		// 	[{
+		// 		data: getRandomData()
+		// 	}], {
+		// 		series: {
+		// 			shadowSize: 0
+		// 		},
+		// 		lines: {
+		// 			show: true,
+		// 			lineWidth: 1,
+		// 			fill: true,
+		// 			fillColor: {
+		// 				colors: [{
+		// 					opacity: .2
+		// 				}, {
+		// 					opacity: .2
+		// 				}]
+		// 			}
+		// 		},
+		// 		colors: ['#fff'],
+		// 		grid: {
+		// 			borderWidth: 0,
+		// 			color: App.colors.gray_lighter,
+		// 		},
+		// 		yaxis: {
+		// 			show: false,
+		// 			min: 0,
+		// 			max: 110
+		// 		},
+		// 		xaxis: {
+		// 			show: false
+		// 		}
+		// 	}
+		// );
+
+		// Start getting new data
+		// updateChartLive();
 	};
 
 	return {

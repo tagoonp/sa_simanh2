@@ -309,7 +309,10 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                     <div class="col-sm-12">
                                         <div class="form-material">
                                             <input class="form-control" type="text" id="txt-mt-facility" name="txt-mt-facility" placeholder="Name of transfer facility" />
-                                            <label for="material-text">Transfer facility&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-app-teal-outline" type="button" onclick="autofill_unknown('txt-mt-facility')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label></label>
+                                            <label for="material-text">Transfer facility&nbsp;&nbsp;&nbsp;&nbsp;
+                                              <button class="btn btn-xs btn-app-teal-outline" data-toggle="modal" data-target="#modal-top" type="button" onclick="fillMedalData('txt-mt-facility')"><i class="ion-android-arrow-dropdown"></i> Choose</button>
+                                              <button class="btn btn-xs btn-app-teal-outline" type="button" onclick="autofill_unknown('txt-mt-facility')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label>
+                                            </label>
                                         </div>
                                     </div>
                                   </div>
@@ -362,6 +365,10 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <!-- .app-layout-canvas -->
         <div class="app-ui-mask-modal"></div>
 
+        <?php
+        include "componants/medal.php";
+        ?>
+
 
         <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
         <script src="../assets/js/core/jquery.min.js"></script>
@@ -380,6 +387,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <!-- Page JS Code -->
         <!-- <script src="../dist/page/obstetric/js/base_forms_validation.js"></script> -->
         <script src="../dist/page/delivery/js/custom-code.js"></script>
+        <script src="../dist/plugin/js/facility.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
         <script>
         $(function()

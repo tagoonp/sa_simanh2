@@ -39,6 +39,8 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <link rel="stylesheet" id="css-font-awesome" href="../assets/css/font-awesome.css" />
         <link rel="stylesheet" id="css-ionicons" href="../assets/css/ionicons.css" />
         <link rel="stylesheet" id="css-bootstrap" href="../assets/css/bootstrap.css" />
+        <link rel="stylesheet" href="../assets/js/plugins/select2/select2.min.css" />
+        <link rel="stylesheet" href="../assets/js/plugins/select2/select2-bootstrap.css" />
         <link rel="stylesheet" id="css-app" href="../assets/css/app.css" />
         <link rel="stylesheet" id="css-app-custom" href="../assets/css/app-custom.css" />
         <link rel="stylesheet" type="text/css" href="../library/sweetalert/dist/sweetalert.css">
@@ -109,7 +111,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                     <!-- .navbar-default -->
                 </header>
                 <!-- End header -->
-
+                <!-- <link rel="stylesheet" href="https://twitter.github.io/typeahead.js/css/examples.css"> -->
                 <main class="app-layout-content">
 
                   <!-- Page Content -->
@@ -192,28 +194,25 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   </div>
                                 </div>
 
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+                                    <div class="form-material">
+                                        <input class="form-control" type="text" id="txt-ancplace" name="txt-anclkace" placeholder="Facility's name / Private / Unknown" />
 
-                                <div class="row">
-                                  <div class="col-sm-6">
-                                    <div class="form-group">
-                                      <div class="col-sm-12">
-                                          <div class="form-material">
-                                              <input class="form-control" type="text" id="txt-ancplace" name="txt-anclkace" placeholder="Facility's name / Private / Unknown" />
-                                              <label for="material-text">Antenatal care attendance&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-app-teal-outline" type="button" onclick="autofill_unknown('txt-ancplace')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label></label>
-                                          </div>
-                                      </div>
+                                        <label for="material-text" >Antenatal care attendance&nbsp;&nbsp;&nbsp;&nbsp;
+                                          <button class="btn btn-xs btn-app-teal-outline" data-toggle="modal" data-target="#modal-top" type="button" onclick="fillMedalData('txt-ancplace')"><i class="ion-android-arrow-dropdown"></i> Choose</button>
+                                          <button class="btn btn-xs btn-app-teal-outline" type="button" id="btnUn1" onclick="autofill_unknown('txt-ancplace')"><i class="ion-android-arrow-dropdown"></i> Unknown</button>
+                                        </label></label>
                                     </div>
                                   </div>
+                                </div>
 
-                                  <div class="col-sm-6">
-                                    <div class="form-group">
-                                      <div class="col-sm-12">
-                                          <div class="form-material">
-                                              <input class="form-control" type="text" id="txt-ga1st" name="txt-ga1st" placeholder="Enter GA at 1st ANC or Unknown" />
-                                              <label for="material-text">Gestational age at 1st ANC&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-app-teal-outline" type="button" onclick="autofill_unknown('txt-ga1st')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label></label>
-                                          </div>
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+                                      <div class="form-material">
+                                          <input class="form-control" type="text" id="txt-ga1st" name="txt-ga1st" placeholder="Enter GA at 1st ANC or Unknown" />
+                                          <label for="material-text">Gestational age at 1st ANC&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-app-teal-outline" type="button" id="btnUn2" onclick="autofill_unknown('txt-ga1st')"><i class="ion-android-arrow-dropdown"></i> Unknown</button></label></label>
                                       </div>
-                                    </div>
                                   </div>
                                 </div>
 
@@ -597,6 +596,11 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <!-- .app-layout-canvas -->
         <div class="app-ui-mask-modal"></div>
 
+        <!-- Apps Modal -->
+        <?php
+        include "componants/medal.php";
+        ?>
+
 
         <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
         <script src="../assets/js/core/jquery.min.js"></script>
@@ -615,6 +619,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <!-- Page JS Code -->
         <!-- <script src="../dist/page/obstetric/js/base_forms_validation.js"></script> -->
         <script src="../dist/page/obstetric/js/custom-code.js"></script>
+        <script src="../dist/plugin/js/facility.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
         <script>
         $(function()

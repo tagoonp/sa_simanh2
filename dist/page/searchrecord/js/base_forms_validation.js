@@ -46,13 +46,23 @@ var BaseFormValidation = function() {
 $(function(){
   $('#add-new-record1').submit(function(){
     if($('#text-patient-id').val()!=''){
-      var jqxhr = $.post( "controller/searchrecord.php", { keyword : $('#text-patient-id').val() },function() {});
+      var jqxhr = $.post( "controller/searchrecord-likely.php", { keyword : $('#text-patient-id').val() },function() {});
 
       jqxhr.always(function(result) {
         $('#historyResult').html(result);
       });
     }
   });
+
+	$('#text-patient-id').keyup(function(){
+		if($('#text-patient-id').val()!=''){
+      var jqxhr = $.post( "controller/searchrecord-likely.php", { keyword : $('#text-patient-id').val() },function() {});
+
+      jqxhr.always(function(result) {
+        $('#historyResult').html(result);
+      });
+    }
+	});
 
   $('#btnAddnew1').click(function(){
     if($('#text-patient-id').val()!=''){
@@ -65,14 +75,14 @@ $(function(){
         confirmButtonText: "Yes!",
         closeOnConfirm: false
       }, function(){
-				
-
-
         var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
 
         jqxhr.always(function(result) {
           if(result=='Y'){
             window.location = 'add-new-record-form.php';
+          }else{
+            // window.location = 'index-authen-error.html';
+            // console.log(result);
           }
         });
       });

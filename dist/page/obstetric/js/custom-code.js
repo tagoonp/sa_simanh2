@@ -14,7 +14,10 @@ $(function(){
       $('.stageinfo').fadeIn('fast', function(){});
     }
   });
+
 });
+
+
 
 function toggle_value(valField, value){
   if(valField=='txtHivreg'){
@@ -64,8 +67,15 @@ function toggle_value(valField, value){
 
 function autofill_unknown(element_id){
   $('#' + element_id).val('Unknown');
+  $('button').blur();
 }
 
-function autofill_na(element_id){
+function autofill_na(element_id, btn){
   $('#' + element_id).val('Not applicable');
+  $('button').blur();
+}
+
+function autofill_custom(element_id, fillstring, btn){
+  $('#' + element_id).val(fillstring);
+  $('button').blur();
 }

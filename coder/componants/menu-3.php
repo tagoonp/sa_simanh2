@@ -20,19 +20,19 @@
         </li>
 
         <li class="nav-item">
-            <a href="close_session.php">Complication</a>
+            <a href="add-complication.php">Complication</a>
         </li>
 
         <li class="nav-item">
-            <a href="close_session.php">Postnatal information</a>
+            <a href="add-postnatal.php">Postnatal information</a>
         </li>
 
         <li class="nav-item">
-            <a href="close_session.php">Newborn at postnatal</a>
+            <a href="add-post-njewborn.php">Newborn at postnatal</a>
         </li>
 
         <li class="nav-item">
-            <a href="close_session.php">Case report</a>
+            <a href="case-report.php">Case report</a>
         </li>
 
         <li class="nav-item nav-drawer-header">App</li>

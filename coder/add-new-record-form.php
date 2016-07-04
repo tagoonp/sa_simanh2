@@ -138,6 +138,33 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   </ul>
                               </div>
                               <div class="card-block" style="padding-top: 30px;">
+                                <!-- Geolocation input div -->
+                                <div class="geolocation">
+                                  <h3>Geolocation data</h3>
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="form-material">
+                                                <input class="form-control" type="text" id="txt-foldernumber" name="txt-foldernumber" placeholder="Please enter your username" />
+                                                <label for="material-text">Latitute</label>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="form-material">
+                                                <input class="form-control" type="text" id="txt-foldernumber" name="txt-foldernumber" placeholder="Please enter your username" />
+                                                <label for="material-text">Longtitute</label>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- End geolocation input div -->
                                 <h3>Main admission data</h3>
                                 <div class="row" style="padding-top: 20px;">
                                   <div class="col-sm-6">

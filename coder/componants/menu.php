@@ -12,11 +12,11 @@
         </li>
 
         <li class="nav-item">
-            <a href="frontend_home.html"><i class="fa fa-table"></i> List record</a>
+            <a href="list-all-record.php"><i class="fa fa-table"></i> List record</a>
         </li>
 
         <li class="nav-item">
-            <a href="frontend_home.html"><i class="ion-search"></i> Search patient</a>
+            <a href="search-record.php"><i class="ion-search"></i> Search patient</a>
         </li>
 
         <li class="nav-item nav-drawer-header">Reports</li>
@@ -26,15 +26,15 @@
             <ul class="nav nav-subnav">
 
                 <li>
-                    <a href="base_ui_buttons.html">Buttons</a>
+                    <a href="base_ui_buttons.html">Summary</a>
                 </li>
 
                 <li>
-                    <a href="base_ui_cards.html">Cards</a>
+                    <a href="base_ui_cards.html">Delivery report</a>
                 </li>
 
                 <li>
-                    <a href="base_ui_cards_api.html">Cards API</a>
+                    <a href="base_ui_cards_api.html">DHIS report</a>
                 </li>
 
             </ul>
