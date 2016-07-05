@@ -65,7 +65,7 @@ $(function(){
         confirmButtonText: "Yes!",
         closeOnConfirm: false
       }, function(){
-				
+
 
 
         var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
@@ -85,6 +85,16 @@ $(function(){
 function createsession(pid){
 
 	var jqxhr = $.post( "controller/createsession.php", { keyword : pid },function() {});
+
+	jqxhr.always(function(result) {
+		if(result=='Y'){
+			window.location = 'add-obstetric.php';
+		}
+	});
+}
+
+function createsession2(pid){
+	var jqxhr = $.post( "controller/createsession-by-record-id.php", { keyword : pid },function() {});
 
 	jqxhr.always(function(result) {
 		if(result=='Y'){

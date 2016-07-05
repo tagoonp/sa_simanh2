@@ -48,23 +48,23 @@ if(isset($_SESSION[$sessionName.'PID'])){
   exit();
 }
 
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."obstetric WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."delivery WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $result = $db->select($strSQL,false,true);
 
 if($result){
-  $strSQL = sprintf("DELETE FROM ".$tbprefix."obstetric WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+  $strSQL = sprintf("DELETE FROM ".$tbprefix."delivery WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
   $resultDelete = $db->delete($strSQL);
 }
 
-$strSQL = sprintf("INSERT INTO ".$tbprefix."obstetric VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-          mysql_real_escape_string($_POST['txtGravd']),
-          mysql_real_escape_string($_POST['txtParity']),
-          mysql_real_escape_string($_POST['txt-ancplace']),
-          mysql_real_escape_string($_POST['txt-ga1st']),
-          mysql_real_escape_string($_POST['radio-alter20w']),
-          mysql_real_escape_string($_POST['txt-noanc']),
-          mysql_real_escape_string($_POST['radio-rh']),
-          mysql_real_escape_string($_POST['radio-antid']),
+$strSQL = sprintf("INSERT INTO ".$tbprefix."delivery VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+          mysql_real_escape_string($_POST['txt-gadel']),
+          mysql_real_escape_string($_POST['txt-datedel']),
+          mysql_real_escape_string($_POST['txt-timedel']),
+          mysql_real_escape_string($_POST['txt_moddel']),
+          mysql_real_escape_string($_POST['inditation']),
+          mysql_real_escape_string($_POST['txt-typeba']),
+          mysql_real_escape_string($_POST['txt-mt-ba']),
+          mysql_real_escape_string($_POST['txt-mt-ba-id']),
           mysql_real_escape_string($_POST['radio-rpr']),
           mysql_real_escape_string($_POST['radio-rprt']),
           mysql_real_escape_string($_POST['radio-hiv']),

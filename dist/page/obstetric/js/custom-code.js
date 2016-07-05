@@ -63,6 +63,15 @@ function toggle_value(valField, value){
       $('.hivCondition1-1-1').show();
     }
   }
+
+  if(valField=='txtRh'){
+    if(value=='Unknown'){
+      $('#radio-antid1').trigger('click');
+      $('.rhCondition').hide();
+    }else{
+      $('.rhCondition').show();
+    }
+  }
 }
 
 function autofill_unknown(element_id){
