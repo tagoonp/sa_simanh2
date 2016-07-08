@@ -78,6 +78,15 @@
                         </div>
                     </div>
                   </div>
+
+                  <div class="form-group" style="padding-top: 20px;">
+                    <div class="col-sm-12">
+                        <div class="form-material">
+                            <input class="form-control" type="text" id="txt-otherind" name="txt-otherind" placeholder="Enter other indication.." />
+                            <label for="material-text">Other indication </label>
+                        </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
@@ -190,7 +199,7 @@
                 <div class="form-group" style="padding-top: 20px;">
                   <div class="col-sm-12">
                       <div class="form-material">
-                        <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php print date('Y-m-d');?>">
+                        <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="">
                         <label for="example-datepicker4">Transfer date </label>
                       </div>
                   </div>

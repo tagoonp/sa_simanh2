@@ -1,7 +1,14 @@
-/*
-App-custom.css
-Template name: AppUI
-Author: rustheme
-*/
-
 /*# sourceMappingURL=maps/app-custom.css.map */
+.radioDiv{
+  padding-bottom: 10px;
+}
+
+.has-error-label{
+  color: red;
+}
+.has-radio-error{
+  border: solid;
+  border-width: 0px 0px 3px 0px;
+  border-color: red;
+  /*color: red;*/
+}

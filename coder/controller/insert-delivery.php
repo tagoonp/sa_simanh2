@@ -56,6 +56,17 @@ if($result){
   $resultDelete = $db->delete($strSQL);
 }
 
+$infact = 0;
+$episio = 0;
+
+if(isset($_POST['radio-perineum'])){
+  if($_POST['radio-perineum']=='0'){
+    $infact = 1;
+  }else{
+    $episio = 1;
+  }
+}
+
 $strSQL = sprintf("INSERT INTO ".$tbprefix."delivery VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
           mysql_real_escape_string($_POST['txt-gadel']),
           mysql_real_escape_string($_POST['txt-datedel']),
@@ -65,28 +76,17 @@ $strSQL = sprintf("INSERT INTO ".$tbprefix."delivery VALUE ('', '%s', '%s', '%s'
           mysql_real_escape_string($_POST['txt-typeba']),
           mysql_real_escape_string($_POST['txt-mt-ba']),
           mysql_real_escape_string($_POST['txt-mt-ba-id']),
-          mysql_real_escape_string($_POST['radio-rpr']),
-          mysql_real_escape_string($_POST['radio-rprt']),
-          mysql_real_escape_string($_POST['radio-hiv']),
-          mysql_real_escape_string($_POST['radio-onart']),
-          mysql_real_escape_string($_POST['radio-hiv1test']),
-          mysql_real_escape_string($_POST['radio-hiv12test']),
-          mysql_real_escape_string(''),
-          mysql_real_escape_string($_POST['radio-cd4']),
-          mysql_real_escape_string($_POST['txt-cd4count']),
-          mysql_real_escape_string($_POST['radio-artdel']),
-          mysql_real_escape_string($_POST['radio-bba']),
-          mysql_real_escape_string($_POST['txt-gaadm']),
-          mysql_real_escape_string($_POST['txtLbstage']),
-          mysql_real_escape_string($_POST['txt-Datelbs']),
-          mysql_real_escape_string($_POST['txt-Timelbs']),
-          mysql_real_escape_string($_POST['txt-Daterm']),
-          mysql_real_escape_string($_POST['txt-Timerm']),
-          mysql_real_escape_string($_POST['txt-Date34']),
-          mysql_real_escape_string($_POST['txt-Time34']),
-          mysql_real_escape_string($_POST['txt-Datefd']),
-          mysql_real_escape_string($_POST['txt-Timefd']),
-          mysql_real_escape_string($_POST['txt-durr']),
+          mysql_real_escape_string($infact),
+          mysql_real_escape_string($episio),
+          mysql_real_escape_string($_POST['radio-degree']),
+          mysql_real_escape_string($_POST['radio-azt']),
+          mysql_real_escape_string($_POST['radio-act']),
+          mysql_real_escape_string($_POST['radio-tvd']),
+          mysql_real_escape_string($_POST['txt-otherind']),
+          mysql_real_escape_string($_POST['radio-mt']),
+          mysql_real_escape_string($_POST['txt-dateadm']),
+          mysql_real_escape_string($_POST['radio-mdeath']),
+          mysql_real_escape_string($_POST['txt-mt-facility']),
           mysql_real_escape_string($_SESSION[$sessionName.'PID'])
         );
 $resultInsert = $db->insert($strSQL,false,true);
@@ -97,14 +97,14 @@ if($resultInsert){
   <script type="text/javascript">
     swal({
       title: "Seccess!",
-      text: "Insert obstetric information success!",
+      text: "Insert delivery information success!",
       type: "success",
       showCancelButton: false,
       confirmButtonColor: "teal",
       confirmButtonText: "Go to next step",
       closeOnConfirm: false
     }, function(){
-      window.location = '../add-delivery.php';
+      window.location = '../add-newborn.php';
     });
   </script>
   <?php
@@ -113,7 +113,7 @@ if($resultInsert){
   <script type="text/javascript">
     swal({
       title: "Sorry",
-      text: "Can not insert obstetric information!",
+      text: "Can not insert delivery information!",
       type: "warning",
       showCancelButton: false,
       confirmButtonColor: "#DD6B55",

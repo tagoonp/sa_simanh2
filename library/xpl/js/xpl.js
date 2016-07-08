@@ -20,8 +20,19 @@ var xpl_custom_function = {
   common_redirect: function(url){
     window.location = url;
   },
-  confirm_redirect: function(){
-    window.location = url;
+  confirm_redirect: function(url){
+    swal({
+      title: "Are you sure?",
+       text: "You will not be able to recover this imaginary file!",
+       type: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#DD6B55",
+       confirmButtonText: "Yes, delete it!",
+       closeOnConfirm: false
+     }, function(){
+       window.location = url;
+     });
+
   }
 }
 

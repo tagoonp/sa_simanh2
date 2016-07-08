@@ -5,6 +5,18 @@ include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
 include "../dist/function/patienthistoryinfo.inc.php";
+
+$resultNB = false;
+if(isset($_GET['nbid'])){
+  $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'", mysql_real_escape_string($_GET['nbid']), mysql_real_escape_string($info['record_id']));
+  $resultNB = $db->select($strSQL, false, true);
+
+  if(!$resultNB){
+    header('Location: add-newborn.php');
+    exit();
+    // print $strSQL;
+  }
+}
 ?>
 <!DOCTYPE html>
 
@@ -118,6 +130,13 @@ include "../dist/function/patienthistoryinfo.inc.php";
                           <h3 style="margin-top: 0px;">Patient's ID : <?php print $_SESSION[$sessionName.'PID']; ?></h3>
                         </div>
                         <div class="col-sm-6 text-right">
+                          <?php
+                          if($resultNB){
+                            ?>
+                            <button type="button" class="btn btn-app-blue" onclick="xpl_custom_function.common_redirect('add-newborn.php')">Add new baby</button>
+                            <?php
+                          }
+                          ?>
                           <button type="button" class="btn btn-app-red" onclick="xpl_custom_function.common_redirect('close_session.php')">Close session</button>
                         </div>
                       </div>
@@ -126,370 +145,122 @@ include "../dist/function/patienthistoryinfo.inc.php";
                           <div class="card">
                             <ul class="nav nav-tabs" data-toggle="tabs">
                                 <li class="active">
-                                    <a href="#btabs-static-home">Add new baby</a>
+                                    <a href="#btabs-static-home">Baby list</a>
                                 </li>
-                                <li>
-                                    <a href="#btabs-static-profile">Baby list</a>
-                                </li>
+
+
+                                  <li >
+                                    <a id="tab2" href="#btabs-static-profile">
+                                      <?php
+                                      if($resultNB){
+                                        print '<i class="fa fa-search"></i> View newborn information';
+                                      }else{
+                                        print '<i class="fa fa-plus"></i> Add new baby form';
+                                      }
+                                      ?>
+
+                                    </a>
+                                  </li>
+
                             </ul>
                             <div class="card-block tab-content">
                                 <div class="tab-pane active" id="btabs-static-home">
-                                  <form class="js-validation-obstetric form-horizontal m-t-sm"  method="post" action="controller/insert-obstetric.php">
+                                  <h3>Newborn list</h3>
+                                  <div class="table-responsive">
+                                    <table class="table table-striped table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 50px;">#</th>
+                                                    <th>Gender</th>
+                                                    <th class="hidden-xs w-10">Alive</th>
+                                                    <th class="hidden-xs w-10">Stillbirth</th>
+                                                    <th class="hidden-xs w-20">Birth weight</th>
+                                                    <th class="text-center" style="width: 100px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              <?php
+                                              $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+                                              $result = $db->select($strSQL, false, true);
 
-                                      <h3>Newborn information</h3>
+                                              if($result){
+                                                $c = 1;
+                                                foreach ($result as $value) {
+                                                  ?>
+                                                  <tr>
+                                                      <td class="text-center"><?php print $c; ?></td>
+                                                      <td>
+                                                        <?php
+                                                        switch ($value['gender']) {
+                                                          case 'Male':
+                                                            print '<i class="ion-male"></i> Male';
+                                                            break;
 
-                                      <div class="form-group" style="padding-top: 20px;">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Gender <span style="color:red;">**</span></label>&nbsp;&nbsp;&nbsp;<br>
-                                          <div class="" checked style="display:none;" >
-                                            <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                              <input type="radio" name="radio-gender" id="radio-gender0" value="0" /><span></span>
-                                            </label>&nbsp;&nbsp;
-                                          </div>
+                                                          default:
+                                                            print '<i class="ion-female"></i> Female';
+                                                            break;
+                                                        }
+                                                        ?>
+                                                      </td>
+                                                      <td class="hidden-xs text-center">
+                                                        <?php
+                                                        switch ($value['alive']) {
+                                                          case '1':
+                                                            print "Yes";
+                                                            break;
 
-                                          <label class="css-input css-radio css-radio-lg css-radio-success m-r-sm">
-                                            <input type="radio" name="radio-gender" id="radio-gender1" value="1"  /><span></span> Male
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-gender" id="radio-gender2" value="2"  /><span></span> Female
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group" style="padding-top: 10px;">
-                                        <div class="col-sm-12">
-                                            <div class="form-material">
-                                                <select class="form-control" name="txt_moddel" id="txt_moddel">
-                                                  <option value="1" selected="selected">Normal delivery</option>
-                                                  <option value="2">V/E</option>
-                                                  <option value="3">F/E</option>
-                                                  <option value="4">Caesarean section</option>
-                                                  <option value="5">Vaginal breach</option>
-                                                </select>
-                                                <label for="material-text">Mode of birth</label>
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Alive</label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-alive" id="radio-alive1" value="0" onclick="toggle_value('radio-alive', 0);"  /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-alive" id="radio-alive2" value="1" onclick="toggle_value('radio-alive', 1);" checked /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="aliveCondition1" style="display:none;">
-                                        <div class="form-group" style="padding-top: 10px;">
-                                          <div class="col-xs-12">
-                                            <label for="material-text">Stillbirth type <span style="color:red;">**</span></label>&nbsp;&nbsp;&nbsp;<br>
-                                            <div class="" checked style="display:none;" >
-                                              <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                <input type="radio" name="radio-alivecon" id="radio-alivecon0" value="0" checked /><span></span>
-                                              </label>&nbsp;&nbsp;
-                                            </div>
-                                            <label class="css-input css-radio css-radio-lg css-radio-success m-r-sm">
-                                              <input type="radio" name="radio-alivecon" id="radio-alivecon1" value="1"  /><span></span> Fresh
-                                            </label>&nbsp;&nbsp;
-                                            <label class="css-input css-radio css-radio-lg css-radio-success">
-                                              <input type="radio" name="radio-alivecon" id="radio-alivecon2" value="2"  /><span></span> Macerated
-                                            </label>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row">
-                                        <div class="col-xs-6">
-                                          <div class="form-group" style="padding-top: 10px;">
-                                            <div class="col-sm-12">
-                                                <div class="form-material">
-                                                    <select class="form-control" name="txt_moddel" id="txt_moddel">
-                                                      <option value="99" selected="selected">Unknown</option>
-                                                      <option value="0">0</option>
-                                                      <option value="1">1</option>
-                                                      <option value="2">2</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                      <option value="6">6</option>
-                                                      <option value="7">7</option>
-                                                      <option value="8">8</option>
-                                                      <option value="9">9</option>
-                                                      <option value="10">10</option>
-                                                    </select>
-                                                    <label for="material-text">Apgar score 5 min</label>
-                                                </div>
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                        <div class="col-xs-6">
-                                          <div class="form-group" style="padding-top: 10px;">
-                                            <div class="col-sm-12">
-                                                <div class="form-material">
-                                                    <select class="form-control" name="txt_moddel" id="txt_moddel">
-                                                      <option value="99" selected="selected">Unknown</option>
-                                                      <option value="0">0</option>
-                                                      <option value="1">1</option>
-                                                      <option value="2">2</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                      <option value="6">6</option>
-                                                      <option value="7">7</option>
-                                                      <option value="8">8</option>
-                                                      <option value="9">9</option>
-                                                      <option value="10">10</option>
-                                                    </select>
-                                                    <label for="material-text">Apgar score 10 min</label>
-                                                </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Resuscitate bag & mask</label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-resus" id="radio-resus1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-resus" id="radio-resus2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-bw" name="txt-bw" placeholder="Enter birth weight (g.)" />
-                                                <label for="material-text">Birth weight </label></label>
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-hc" name="txt-hc" placeholder="Enter head circumference (cm), If no data enter 0" />
-                                                <label for="material-text">Head circumference (cm) </label></label>
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-fl" name="txt-fl" placeholder="Enter fetal length (cm), If no data enter 0" />
-                                                <label for="material-text">Fetal length (cm) </label></label>
-                                            </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Birth defects found</label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-bdf" id="radio-bdf1" value="0" checked onclick="toggle_value('radio-bdf', 0);" /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-bdf" id="radio-bdf2" value="1" onclick="toggle_value('radio-bdf', 1);" /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="bdfCondition1" style="display: none;">
-                                        <div class="form-group">
-                                          <div class="col-sm-12">
-                                              <div class="form-material">
-                                                  <textarea name="txt-bdfindentift" id="txt-bdfindentift" class="form-control" rows="4" cols="40" placeholder="Enter identify, please see http://www.birthregister.co.za/documentation"></textarea>
-                                                  <label for="material-text">Identify </label></label>
-                                              </div>
-                                          </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <div class="col-xs-12">
-                                            <label for="material-text">Birth defects notified</label>&nbsp;&nbsp;&nbsp;<br>
-                                            <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                              <input type="radio" name="radio-bdn" id="radio-bdn1" value="0" checked /><span></span> No
-                                            </label>&nbsp;&nbsp;
-                                            <label class="css-input css-radio css-radio-lg css-radio-success">
-                                              <input type="radio" name="radio-bdn" id="radio-bdn2" value="1"  /><span></span> Yes
-                                            </label>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Live birth to HIV positive woman</label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-lbhiv" id="radio-lbhiv" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-lbhiv" id="radio-lbhiv" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Exclusive breast feeding within 1 hour</label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-ebf" id="radio-ebf1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-ebf" id="radio-ebf2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Breast feeding </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-bf" id="radio-bf1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-bf" id="radio-bf2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Formular feeding  </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-ff" id="radio-ff1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-ff" id="radio-ff2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Skin to Skin contact  </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-s2s" id="radio-s2s1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-s2s" id="radio-s2s2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <h3>Newborn information</h3>
-
-                                      <div class="form-group" style="padding-top: 20px;">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Newborn admitted </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-na" id="radio-na1" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-na" id="radio-na2" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="row" style="padding-top: 20px; margin-bottom: 0px;">
-                                        <div class="col-sm-6">
-                                          <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <div class="form-material">
-                                                  <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd"  value="">
-                                                  <!-- <input class="form-control" type="date" id="txt-timeadm" name="txt-timeadm" placeholder="Please enter time of admission" value="" /> -->
-                                                  <label for="example-datepicker4">Date of separation <span style="color: red;">**</span></label>
-                                                </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                          <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <div class="form-material">
-                                                    <input class="form-control" type="time" id="txt-timeadm" name="txt-timeadm" placeholder="Please enter time of admission" value=""  />
-                                                    <label for="material-text">Time of separation <span style="color: red;">**</span></label>
-                                                </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group" style="padding-top: 0px;">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Separated by early neonatal death < 7days </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-neo7" id="radio-neo71" value="0" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-neo7" id="radio-neo72" value="1"  /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group" style="padding-top: 0px;">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Separated by late neonatal death 7 - 28 days </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-neo28" id="radio-neo281" value="0" onclick="toggle_value('radio-neo28', 0);" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-neo28" id="radio-neo282" value="1" onclick="toggle_value('radio-neo28', 1);" /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="form-group" style="padding-top: 0px;">
-                                        <div class="col-xs-12">
-                                          <label for="material-text">Separated by transfer out </label>&nbsp;&nbsp;&nbsp;<br>
-                                          <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                            <input type="radio" name="radio-sep" id="radio-sep1" value="0" onclick="toggle_value('radio-sep', 0);" checked /><span></span> No
-                                          </label>&nbsp;&nbsp;
-                                          <label class="css-input css-radio css-radio-lg css-radio-success">
-                                            <input type="radio" name="radio-sep" id="radio-sep2" value="1" onclick="toggle_value('radio-sep', 1);" /><span></span> Yes
-                                          </label>
-                                        </div>
-                                      </div>
-
-                                      <div class="transOption" style="display:none;">
-                                        <div class="form-group" style="padding-top: 0px;">
-                                          <div class="col-sm-12">
-                                              <div class="form-material">
-                                                  <input class="form-control" type="text" id="txt-tranfac" name="txt-tranfac" placeholder="Enter name of transfer facility" />
-                                                  <label for="material-text">Transfer facility &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <button class="btn btn-xs btn-app-teal-outline" data-toggle="modal" data-target="#modal-top" type="button" onclick="fillMedalData('txt-tranfac')"><i class="ion-android-arrow-dropdown"></i> Choose</button></label>
-                                                  </label>
-                                              </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="row narrow-gutter">
-                                          <div class="col-xs-12 text-right">
-                                              <button type="reset" class="btn btn-default">Cancel</button>
-                                              <button type="submit" class="btn btn-app-teal">Save</button>
-                                          </div>
-                                          <div class="col-xs-6">
-
-                                          </div>
-                                      </div>
-                                      <!-- End referCondition -->
-                                  </form>
+                                                          default:
+                                                            print "No";
+                                                            break;
+                                                        }
+                                                        ?>
+                                                      </td>
+                                                      <td class="hidden-xs text-center">
+                                                        <?php
+                                                        switch ($value['stillbirth']) {
+                                                          case '1':
+                                                            print "Fresh";
+                                                            break;
+                                                          case '2':
+                                                            print "Macerated";
+                                                            break;
+                                                          default:
+                                                            print "-";
+                                                            break;
+                                                        }
+                                                        ?>
+                                                      </td>
+                                                      <td class="hidden-xs">
+                                                        <?php
+                                                        print number_format($value['birth_wieght']);
+                                                        ?>
+                                                      </td>
+                                                      <td class="text-center">
+                                                          <div class="btn-group">
+                                                              <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit info" onclick="xpl_custom_function.common_redirect('add-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-edit"></i></button>
+                                                              <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Delete this baby" onclick="xpl_custom_function.confirm_redirect('controller/delete-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-close"></i></button>
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                  <?php
+                                                  $c++;
+                                                }
+                                              }else{
+                                                ?>
+                                                <tr>
+                                                  <td colspan="6">
+                                                    No data found!
+                                                  </td>
+                                                </tr>
+                                                <?php
+                                              }
+                                              ?>
+                                              </tbody>
+                                            </table>
+                                  </div>
                                 </div>
                                 <div class="tab-pane" id="btabs-static-profile">
-                                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft
-                                        beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica
-                                        VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                                        stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                  <?php include "page/insert-outcome.php"; ?>
                                 </div>
                             </div>
                           </div>
@@ -531,11 +302,12 @@ include "../dist/function/patienthistoryinfo.inc.php";
        <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 
         <!-- Page JS Code -->
-        <!-- <script src="../dist/page/obstetric/js/base_forms_validation.js"></script> -->
+        <script src="../dist/page/newborn/js/base_forms_validation.js"></script>
         <script src="../dist/page/newborn/js/custom-code.js"></script>
         <script src="../dist/plugin/js/facility.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
         <script>
+
         $(function()
         {
             // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
