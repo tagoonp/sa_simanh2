@@ -56,7 +56,15 @@
                             Mode of delivery
                           </td>
                           <td>
-                            <?php print $result[0]['point_no']; ?>
+                            <?php
+                            switch($result[0]['mode_del']){
+                              case '2': print "V/E"; break;
+                              case '3': print "F/E"; break;
+                              case '4': print "Caesarean section"; break;
+                              case '5': print "Vaginal breach"; break;
+                              default: print "Normal delivery";
+                            }
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -65,9 +73,12 @@
                           </td>
                           <td>
                             <?php
-                            switch($result[0]['refer_in_status']){
-                              case '1': print "Yes"; break;
-                              default: print "No";
+                            $strSQL = sprintf("SELECT * FROM fmn1_indication WHERE ind_id = '%s' ", mysql_real_escape_string($result[0]['indication']));
+                            $r = $db->select($strSQL,false,true);
+                            if($r){
+                              print $r[0]['ind_name'];
+                            }else{
+                              print "-";
                             }
                             ?>
                           </td>
@@ -77,7 +88,13 @@
                             Other indication
                           </td>
                           <td>
-                            <?php print $result[0]['refer_in_facility']; ?>
+                            <?php
+                            if($result[0]['ind_other']!=''){
+                              print $result[0]['ind_other'];
+                            }else{
+                              print "-";
+                            };
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -86,11 +103,14 @@
                           </td>
                           <td>
                             <?php
-                            switch($result[0]['refer_in_status']){
-                              case '1': print "Stable"; break;
-                              case '2': print "Unstable"; break;
-                              case '3': print "Coma"; break;
-                              default: print "N/A";
+                            switch($result[0]['type_ba']){
+                              case '1': print "Midwife"; break;
+                              case '2': print "Professional Nurse"; break;
+                              case '3': print "Medical student"; break;
+                              case '4': print "Medical officer"; break;
+                              case '5': print "Registrar"; break;
+                              case '6': print "Obstetrician"; break;
+                              default: print "No data";
                             }
                             ?>
                           </td>
@@ -100,7 +120,7 @@
                             Birth attendant
                           </td>
                           <td>
-                            <?php print $result[0]['refer_in_facility']; ?>
+                            <?php print $result[0]['ba_full_info']; ?>
                           </td>
                         </tr>
                       </table>
@@ -172,7 +192,12 @@
                             Antenatal client on AZT before labour
                           </td>
                           <td>
-                            <?php print $result[0]['pid']; ?>
+                            <?php
+                            switch($result[0]['m_art1']){
+                              case '1': print "Yes"; break;
+                              default: print "No";
+                            }
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -180,7 +205,12 @@
                             Antenatal client Nevirapine taken during labour
                           </td>
                           <td>
-                            <?php print $result[0]['p_fname']." ".$result[0]['p_mname']." ".$result[0]['p_lname']; ?>
+                            <?php
+                            switch($result[0]['m_art2']){
+                              case '1': print "Yes"; break;
+                              default: print "No";
+                            }
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -188,7 +218,12 @@
                             Truvada given to woman after delivery
                           </td>
                           <td>
-                            <?php print $result[0]['p_address']; ?>
+                              <?php
+                              switch($result[0]['m_art3']){
+                                case '1': print "Yes"; break;
+                                default: print "No";
+                              }
+                              ?>
                           </td>
                         </tr>
                       </table>
@@ -207,7 +242,7 @@
                             Date of separation
                           </td>
                           <td>
-                            <?php print $result[0]['pid']; ?>
+                            <?php print $result[0]['mater_sep_date']; ?>
                           </td>
                         </tr>
                         <tr>
@@ -215,7 +250,12 @@
                             Separated by transfer out
                           </td>
                           <td>
-                            <?php print $result[0]['p_fname']." ".$result[0]['p_mname']." ".$result[0]['p_lname']; ?>
+                            <?php
+                            switch($result[0]['mater_sep_trans']){
+                              case '1': print "Yes"; break;
+                              default: print "No";
+                            }
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -223,7 +263,13 @@
                             Transfer facility
                           </td>
                           <td>
-                            <?php print $result[0]['p_address']; ?>
+                            <?php
+                            if($result[0]['mater_sep_tfacility']!=''){
+                              print $result[0]['mater_sep_tfacility'];
+                            }else{
+                              print "-";
+                            };
+                            ?>
                           </td>
                         </tr>
                         <tr>
@@ -231,7 +277,12 @@
                             Separated by maternal death
                           </td>
                           <td>
-                            <?php print $result[0]['p_address']; ?>
+                            <?php
+                            switch($result[0]['mater_sep_death']){
+                              case '1': print "Yes"; break;
+                              default: print "No";
+                            }
+                            ?>
                           </td>
                         </tr>
                       </table>

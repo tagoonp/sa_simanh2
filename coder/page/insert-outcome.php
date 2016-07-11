@@ -146,7 +146,7 @@
       <div class="col-sm-12">
           <div class="form-material">
               <input class="form-control" type="text" id="txt-bw" name="txt-bw" placeholder="Enter birth weight (g.)" />
-              <label for="material-text">Birth weight </label></label>
+              <label for="material-text">Birth weight <span style="color:red;">**</span></label></label>
           </div>
       </div>
     </div>

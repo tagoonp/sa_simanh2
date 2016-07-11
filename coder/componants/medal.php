@@ -10,7 +10,7 @@
                 </ul>
             </div>
             <div class="card-block">
-              <div class="form-group" style="padding-top: 15px; display:;">
+              <div class="form-group" style="padding-top: 15px; display:none;">
                 <div class="col-sm-12">
                     <div class="form-material">
                         <input class="form-control" type="text" id="txt-fieldname" name="txt-fieldname"  />

@@ -240,10 +240,11 @@
       </div>
     </div>
 
-    <div class="transOption" style="display: <?php if($resultNB){ if($resultNB[0]['refer']=!'1'){ print "none"; } }else{ print "none"; }?>;">
+    <div class="transOption" style="display: <?php if($resultNB){ if(($resultNB[0]['refer']=='0') || ($resultNB[0]['refer']==null)){ print "none"; }  }else{ print "none"; }?>;">
       <div class="form-group" style="padding-top: 0px;">
         <div class="col-sm-12">
             <div class="form-material">
+              <?php //print $resultNB[0]['brefer']; ?>
                 <input class="form-control" type="text" id="txt-refer_to_facility" name="txt-refer_to_facility" placeholder="Enter name of transfer facility" value="<?php if($resultNB){ print $resultNB[0]['refer_to_facility']; } ?>" />
                 <label for="material-text">Transfer facility &nbsp;&nbsp;&nbsp;&nbsp;
                   <button class="btn btn-xs btn-app-teal-outline" data-toggle="modal" data-target="#modal-top" type="button" onclick="fillMedalData('txt-refer_to_facility')"><i class="ion-android-arrow-dropdown"></i> Choose</button></label>

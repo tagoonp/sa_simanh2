@@ -191,12 +191,43 @@ if($resultCom){
                                Induction of labour
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-induc" id="radio-induc1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-induc" id="radio-induc2" value="1" <?php if($il){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($il){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-induc" id="radio-induc1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-induc" id="radio-induc2" value="1" <?php if($il){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-induc" id="radio-induc1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-induc" id="radio-induc2" value="1" <?php if($il){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-induc" id="radio-induc1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-induc" id="radio-induc2" value="1" <?php if($il){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
+
                              </td>
                              <td>
                                -
@@ -207,12 +238,42 @@ if($resultCom){
                                Antepartum haemorrhage
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-ante" id="radio-ante1" value="0" onclick="toggle_value('radio-ante', 0);" checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-ante" id="radio-ante2" value="1" onclick="toggle_value('radio-ante', 1);" <?php if($ah){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($ah){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-ante" id="radio-ante1" value="0" onclick="toggle_value('radio-ante', 0);" checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-ante" id="radio-ante2" value="1" onclick="toggle_value('radio-ante', 1);" <?php if($ah){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-ante" id="radio-ante1" value="0" onclick="toggle_value('radio-ante', 0);" checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-ante" id="radio-ante2" value="1" onclick="toggle_value('radio-ante', 1);" <?php if($ah){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-ante" id="radio-ante1" value="0" onclick="toggle_value('radio-ante', 0);" checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-ante" id="radio-ante2" value="1" onclick="toggle_value('radio-ante', 1);" <?php if($ah){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -224,12 +285,42 @@ if($resultCom){
                                AP : Abruptio placenta
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-ap" id="radio-ap1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-ap" id="radio-ap2" value="1" <?php if($AP){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($AP){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-ap" id="radio-ap1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-ap" id="radio-ap2" value="1" <?php if($AP){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-ap" id="radio-ap1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-ap" id="radio-ap2" value="1" <?php if($AP){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-ap" id="radio-ap1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-ap" id="radio-ap2" value="1" <?php if($AP){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -241,12 +332,42 @@ if($resultCom){
                                PP : Placenta previa
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-pp" id="radio-pp1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-pp" id="radio-pp2" value="1"  <?php if($PP){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($PP){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-pp" id="radio-pp1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-pp" id="radio-pp2" value="1"  <?php if($PP){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-pp" id="radio-pp1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-pp" id="radio-pp2" value="1"  <?php if($PP){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-pp" id="radio-pp1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-pp" id="radio-pp2" value="1"  <?php if($PP){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -258,12 +379,42 @@ if($resultCom){
                                Postpartum haemorrhage
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-post" id="radio-post1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-post" id="radio-post2" value="1"  <?php if($ph){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($ph){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-post" id="radio-post1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-post" id="radio-post2" value="1"  <?php if($ph){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-post" id="radio-post1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-post" id="radio-post2" value="1"  <?php if($ph){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-post" id="radio-post1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-post" id="radio-post2" value="1"  <?php if($ph){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -274,12 +425,42 @@ if($resultCom){
                                Severe pre eclampsia
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-spe" id="radio-eclm1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-spe" id="radio-eclm2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($sep){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-spe" id="radio-eclm1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-spe" id="radio-eclm2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-spe" id="radio-eclm1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-spe" id="radio-eclm2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-spe" id="radio-eclm1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-spe" id="radio-eclm2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -290,12 +471,43 @@ if($resultCom){
                                Eclampsia
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-eclm" id="radio-eclm1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-eclm" id="radio-eclm2" value="1"  <?php if($opl){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($ecl){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-eclm" id="radio-eclm1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-eclm" id="radio-eclm2" value="1"  <?php if($ecl){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-eclm" id="radio-eclm1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-eclm" id="radio-eclm2" value="1"  <?php if($ecl){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-eclm" id="radio-eclm1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-eclm" id="radio-eclm2" value="1"  <?php if($ecl){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
+
                              </td>
                              <td>
                                -
@@ -306,12 +518,43 @@ if($resultCom){
                                Prolonged rupture of membranes
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-prm" id="radio-prm1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-prm" id="radio-prm2" value="1"  <?php if($prm){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($prm){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-prm" id="radio-prm1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-prm" id="radio-prm2" value="1"  <?php if($prm){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-prm" id="radio-prm1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-prm" id="radio-prm2" value="1"  <?php if($prm){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-prm" id="radio-prm1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-prm" id="radio-prm2" value="1"  <?php if($prm){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
+
                              </td>
                              <td>
                                -
@@ -322,12 +565,42 @@ if($resultCom){
                                Ruptured uterus
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-rup" id="radio-rup1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-rup" id="radio-rup2" value="1"  <?php if($rup){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($rup){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-rup" id="radio-rup1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-rup" id="radio-rup2" value="1"  <?php if($rup){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-rup" id="radio-rup1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-rup" id="radio-rup2" value="1"  <?php if($rup){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-rup" id="radio-rup1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-rup" id="radio-rup2" value="1"  <?php if($rup){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -338,12 +611,42 @@ if($resultCom){
                                Sepsis
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-sep" id="radio-sep1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-sep" id="radio-sep2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($sep){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-sep" id="radio-sep1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-sep" id="radio-sep2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-sep" id="radio-sep1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-sep" id="radio-sep2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-sep" id="radio-sep1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-sep" id="radio-sep2" value="1"  <?php if($sep){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -354,12 +657,42 @@ if($resultCom){
                                Obstructed or prolonged labour
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-opl" id="radio-opl1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-opl" id="radio-opl2" value="1"  <?php if($opl){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($opl){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-opl" id="radio-opl1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-opl" id="radio-opl2" value="1"  <?php if($opl){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-opl" id="radio-opl1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-opl" id="radio-opl2" value="1"  <?php if($opl){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-opl" id="radio-opl1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-opl" id="radio-opl2" value="1"  <?php if($opl){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -370,12 +703,42 @@ if($resultCom){
                                Retained placenta
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-rp" id="radio-rp1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-rp" id="radio-rp2" value="1"  <?php if($ret){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($ret){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-rp" id="radio-rp1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-rp" id="radio-rp2" value="1"  <?php if($ret){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-rp" id="radio-rp1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-rp" id="radio-rp2" value="1"  <?php if($ret){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-rp" id="radio-rp1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-rp" id="radio-rp2" value="1"  <?php if($ret){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -386,12 +749,42 @@ if($resultCom){
                                Manual removal of placenta
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-mrp" id="radio-mrp1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-mrp" id="radio-mrp2" value="1"  <?php if($mrp){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($mrp){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-mrp" id="radio-mrp1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-mrp" id="radio-mrp2" value="1"  <?php if($mrp){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-mrp" id="radio-mrp1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-mrp" id="radio-mrp2" value="1"  <?php if($mrp){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-mrp" id="radio-mrp1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-mrp" id="radio-mrp2" value="1"  <?php if($mrp){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -402,12 +795,42 @@ if($resultCom){
                                Maternal death
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-mater" id="radio-mater1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-mater" id="radio-mater2" value="1"  <?php if($md){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($md){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-mater" id="radio-mater1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-mater" id="radio-mater2" value="1"  <?php if($md){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-mater" id="radio-mater1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-mater" id="radio-mater2" value="1"  <?php if($md){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-mater" id="radio-mater1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-mater" id="radio-mater2" value="1"  <?php if($md){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -418,12 +841,42 @@ if($resultCom){
                                Stillbirth
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-still" id="radio-still1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-still" id="radio-still2" value="1" <?php if($still){ print "checked"; } ?>  /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($still){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-still" id="radio-still1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-still" id="radio-still2" value="1" <?php if($still){ print "checked"; } ?>  /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-still" id="radio-still1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-still" id="radio-still2" value="1" <?php if($still){ print "checked"; } ?>  /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-still" id="radio-still1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-still" id="radio-still2" value="1" <?php if($still){ print "checked"; } ?>  /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                -
@@ -434,12 +887,42 @@ if($resultCom){
                                Neonatal death
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-neo" id="radio-neo1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-neo" id="radio-neo2" value="1" <?php if($neo){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($neo){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-neo" id="radio-neo1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-neo" id="radio-neo2" value="1" <?php if($neo){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-neo" id="radio-neo1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-neo" id="radio-neo2" value="1" <?php if($neo){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-neo" id="radio-neo1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-neo" id="radio-neo2" value="1" <?php if($neo){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                <?php
@@ -465,12 +948,42 @@ if($resultCom){
                                Preterm birth
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-pt" id="radio-pt1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-pt" id="radio-pt2" value="1" <?php if($pt){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($pt){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-pt" id="radio-pt1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-pt" id="radio-pt2" value="1" <?php if($pt){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-pt" id="radio-pt1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-pt" id="radio-pt2" value="1" <?php if($pt){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-pt" id="radio-pt1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-pt" id="radio-pt2" value="1" <?php if($pt){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
+
                              </td>
                              <td>
                                <?php
@@ -487,12 +1000,44 @@ if($resultCom){
                                Low birth weight
                              </td>
                              <td>
-                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                 <input type="radio" name="radio-lbw" id="radio-lbw1" value="0"  checked /><span></span> No
-                               </label>&nbsp;&nbsp;
-                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                 <input type="radio" name="radio-lbw" id="radio-lbw2" value="1" <?php if($lwb){ print "checked"; } ?> /><span></span> Yes
-                               </label>
+                               <?php
+                                 if($info['confirm_status']==1){
+                                   if($lwb){
+                                     ?>
+                                     <span class="label label-success" style="font-size: 0.8em;">Yes</span>
+                                     <div class="" style="display:none;">
+
+                                       <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                         <input type="radio" name="radio-lbw" id="radio-lbw1" value="0"  checked /><span></span> No
+                                       </label>&nbsp;&nbsp;
+                                       <label class="css-input css-radio css-radio-lg css-radio-success">
+                                         <input type="radio" name="radio-lbw" id="radio-lbw2" value="1" <?php if($lwb){ print "checked"; } ?> /><span></span> Yes
+                                       </label>
+                                     </div>
+                                     <?php
+                                   }else{
+                                     ?>
+
+                                     <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                       <input type="radio" name="radio-lbw" id="radio-lbw1" value="0"  checked /><span></span> No
+                                     </label>&nbsp;&nbsp;
+                                     <label class="css-input css-radio css-radio-lg css-radio-success">
+                                       <input type="radio" name="radio-lbw" id="radio-lbw2" value="1" <?php if($lwb){ print "checked"; } ?> /><span></span> Yes
+                                     </label>
+                                     <?php
+                                   }
+                                 }else{
+                                   ?>
+
+                                   <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
+                                     <input type="radio" name="radio-lbw" id="radio-lbw1" value="0"  checked /><span></span> No
+                                   </label>&nbsp;&nbsp;
+                                   <label class="css-input css-radio css-radio-lg css-radio-success">
+                                     <input type="radio" name="radio-lbw" id="radio-lbw2" value="1" <?php if($lwb){ print "checked"; } ?> /><span></span> Yes
+                                   </label>
+                                   <?php
+                                 }
+                               ?>
                              </td>
                              <td>
                                <?php

@@ -144,7 +144,9 @@ if(isset($_GET['nbid'])){
                                     <a href="#btabs-static-home">Baby list</a>
                                 </li>
 
-
+                                <?php
+                                if($info['confirm_status']!=1){
+                                  ?>
                                   <li >
                                     <a id="tab2" href="#btabs-static-profile">
                                       <?php
@@ -154,9 +156,12 @@ if(isset($_GET['nbid'])){
                                         print '<i class="fa fa-plus"></i> Add new baby form';
                                       }
                                       ?>
-
                                     </a>
                                   </li>
+                                  <?php
+                                }
+                                ?>
+
 
                             </ul>
                             <div class="card-block tab-content">
@@ -233,8 +238,21 @@ if(isset($_GET['nbid'])){
                                                       </td>
                                                       <td class="text-center">
                                                           <div class="btn-group">
-                                                              <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit info" onclick="xpl_custom_function.common_redirect('add-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-edit"></i></button>
-                                                              <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Delete this baby" onclick="xpl_custom_function.confirm_redirect('controller/delete-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-close"></i></button>
+                                                            <?php
+                                                            if($info['confirm_status']!=1){
+                                                              ?>
+                                                              <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Edit info" onclick="xpl_custom_function.common_redirect('add-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-edit"></i></button>
+                                                              <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Delete this baby" onclick="xpl_custom_function.confirm_redirect('controller/delete-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-close"></i></button>
+                                                              <?php
+                                                            }else{
+                                                              ?>
+                                                              <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="View info" onclick="xpl_custom_function.common_redirect('view-newborn.php?nbid=<?php print $value['nb_no'];?>')"><i class="ion-search"></i></button>
+                                                              <button class="btn btn-xs btn btn-app-light" type="button" data-toggle="tooltip" title="Edit info" onclick="xpl_custom_function.common_redirect('add-newborn.php?nbid=<?php print $value['nb_no'];?>')" disabled=""><i class="ion-edit"></i></button>
+                                                              <button class="btn btn-xs btn btn-app-light" type="button" data-toggle="tooltip" title="Delete this baby" onclick="xpl_custom_function.confirm_redirect('controller/delete-newborn.php?nbid=<?php print $value['nb_no'];?>')"  disabled=""><i class="ion-close"></i></button>
+                                                              <?php
+                                                            }
+                                                             ?>
+
                                                           </div>
                                                       </td>
                                                   </tr>
@@ -255,9 +273,16 @@ if(isset($_GET['nbid'])){
                                             </table>
                                   </div>
                                 </div>
-                                <div class="tab-pane" id="btabs-static-profile">
-                                  <?php include "page/insert-outcome.php"; ?>
-                                </div>
+                                <?php
+                                if($info['confirm_status']!=1){
+                                  ?>
+                                  <div class="tab-pane" id="btabs-static-profile">
+                                    <?php include "page/insert-outcome.php"; ?>
+                                  </div>
+                                  <?php
+                                }
+                                ?>
+
                             </div>
                           </div>
                           <!-- End Card Tabs Default Style -->

@@ -216,7 +216,7 @@ if(isset($_GET['nbid'])){
                                                   </td>
                                                   <td class="text-center">
                                                       <div class="btn-group">
-                                                          <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Manage" onclick="xpl_custom_function.common_redirect('add-nb-management.php?nbid=<?php print $value['nbno'];?>')"><i class="ion-edit"></i></button>
+                                                          <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Manage" onclick="xpl_custom_function.common_redirect('add-nb-management.php?nbid=<?php print $value['nbno'];?>')"><i class="ion-edit"></i></button>
                                                       </div>
                                                   </td>
                                               </tr>
