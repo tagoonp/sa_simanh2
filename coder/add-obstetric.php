@@ -6,6 +6,9 @@ include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
 include "../dist/function/patienthistoryinfo.inc.php";
 
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+$resultCheck = $db->select($strSQL, false, true);
+
 $strSQL = sprintf("SELECT * FROM ".$tbprefix."obstetric WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
 $result = $db->select($strSQL, false, true);
 
@@ -69,10 +72,6 @@ $result = $db->select($strSQL, false, true);
                         <?php include "componants/menu-3.php"; ?>
                         <!-- End drawer navigation -->
 
-                        <div class="drawer-footer">
-                            <p class="copyright">AppUI Template &copy;</p>
-                            <a href="https://shapebootstrap.net/item/1525731-appui-admin-frontend-template/?ref=rustheme" target="_blank" rel="nofollow">Purchase a license</a>
-                        </div>
                     </div>
                     <!-- End drawer scroll area -->
                 </aside>
@@ -118,7 +117,11 @@ $result = $db->select($strSQL, false, true);
                 <!-- <link rel="stylesheet" href="https://twitter.github.io/typeahead.js/css/examples.css"> -->
                 <?php
                 if($result){
-                  include "page/update-obstetric.php";
+                  if($resultCheck[0]['confirm_status']==1){
+                    include "page/view-obstetric.php";
+                  }else{
+                    include "page/update-obstetric.php";
+                  }
                 }else{
                   include "page/insert-obstetric.php";
                 }

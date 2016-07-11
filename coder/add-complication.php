@@ -5,6 +5,9 @@ include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
 include "../dist/function/patienthistoryinfo.inc.php";
+
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."complication_delivery WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+$result = $db->select($strSQL, false, true);
 ?>
 <!DOCTYPE html>
 
@@ -63,10 +66,6 @@ include "../dist/function/patienthistoryinfo.inc.php";
                         <?php include "componants/menu-3.php"; ?>
                         <!-- End drawer navigation -->
 
-                        <div class="drawer-footer">
-                            <p class="copyright">AppUI Template &copy;</p>
-                            <a href="https://shapebootstrap.net/item/1525731-appui-admin-frontend-template/?ref=rustheme" target="_blank" rel="nofollow">Purchase a license</a>
-                        </div>
                     </div>
                     <!-- End drawer scroll area -->
                 </aside>
@@ -77,12 +76,6 @@ include "../dist/function/patienthistoryinfo.inc.php";
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
-                                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
-                        					<span class="sr-only">Toggle navigation</span>
-                        					<span class="icon-bar"></span>
-                        					<span class="icon-bar"></span>
-                        					<span class="icon-bar"></span>
-                        				</button> -->
                                 <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
                         					<span class="sr-only">Toggle drawer</span>
                         					<span class="icon-bar"></span>
@@ -95,13 +88,9 @@ include "../dist/function/patienthistoryinfo.inc.php";
                             </div>
 
                             <div class="collapse navbar-collapse" id="header-navbar-collapse">
-                                <!-- Header search form -->
-
-
-                                <!-- .navbar-left -->
-                                <?php include "componants/nav-left.php"; ?>
-                                <!-- .navbar-right -->
-
+                              <!-- .navbar-left -->
+                              <?php include "componants/nav-left.php"; ?>
+                              <!-- .navbar-right -->
                             </div>
                         </div>
                         <!-- .container-fluid -->
@@ -110,340 +99,13 @@ include "../dist/function/patienthistoryinfo.inc.php";
                 </header>
                 <!-- End header -->
 
-                <main class="app-layout-content">
-
-                  <!-- Page Content -->
-                  <div class="container-fluid p-y-md">
-                      <!-- Stats -->
-                      <div class="row">
-                        <div class="col-sm-6 text-left">
-                          <h3 style="margin-top: 0px;">Patient's ID : <?php print $_SESSION[$sessionName.'PID']; ?></h3>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                          <button type="button" class="btn btn-app-red" onclick="xpl_custom_function.common_redirect('close_session.php')">Close session</button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <form class="js-validation-obstetric form-horizontal m-t-sm"  method="post" action="controller/insert-obstetric.php">
-                          <div class="col-xs-12">
-                            <!-- Add card -->
-                            <div class="card">
-                              <div class="card-header bg-teal bg-inverse">
-                                  <h4>Complications in labour / delivery</h4>
-                              </div>
-                              <div class="card-block" style="padding-top: 30px;">
-                                <div class="row">
-                                  <div class="col-sm-12">
-                                     <div class="table-responsive">
-                                       <table class="table table-striped table-bordered">
-                                         <thead>
-                                           <tr>
-                                             <th>
-                                               Complication
-                                             </td>
-                                             <th>
-                                               Status
-                                             </td>
-                                             <th>
-                                               Remark
-                                             </td>
-                                           </tr>
-                                         </thead>
-                                         <tbody>
-                                           <tr>
-                                             <td>
-                                               Induction of labour
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-induc" id="radio-induc1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-induc" id="radio-induc2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Antepartum haemorrhage
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-ante" id="radio-ante1" value="0" onclick="toggle_value('radio-ante', 0);" checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-ante" id="radio-ante2" value="1" onclick="toggle_value('radio-ante', 1);" /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-
-                                           <tr class="anteOption" style="display:none;">
-                                             <td>
-                                               AP : Abruptio placenta
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-ap" id="radio-ap1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-ap" id="radio-ap2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-
-                                           <tr class="anteOption" style="display:none;">
-                                             <td>
-                                               PP : Placenta previa
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-pp" id="radio-pp1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-pp" id="radio-pp2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-
-                                           <tr>
-                                             <td>
-                                               Postpartum haemorrhage
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-post" id="radio-post1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-post" id="radio-post2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Eclampsia
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-eclm" id="radio-eclm1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-eclm" id="radio-eclm2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Prolonged rupture of membranes
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-prm" id="radio-prm1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-prm" id="radio-prm2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Ruptured uterus
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-rup" id="radio-rup1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-rup" id="radio-rup2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Sepsis
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-sep" id="radio-sep1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-sep" id="radio-sep2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Obstructed or prolonged labour
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-opl" id="radio-opl1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-opl" id="radio-opl2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Retained placenta
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-rp" id="radio-rp1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-rp" id="radio-rp2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Manual removal of placenta
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-mrp" id="radio-mrp1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-mrp" id="radio-mrp2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Maternal death
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-mater" id="radio-mater1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-mater" id="radio-mater2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Stillbirth
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-still" id="radio-still1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-still" id="radio-still2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Neonatal death
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-neo" id="radio-neo1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-neo" id="radio-neo2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Preterm birth
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-pt" id="radio-pt1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-pt" id="radio-pt2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                           <tr>
-                                             <td>
-                                               Low birth weight
-                                             </td>
-                                             <td>
-                                               <label class="css-input css-radio css-radio-lg css-radio-danger m-r-sm">
-                                                 <input type="radio" name="radio-lbw" id="radio-lbw1" value="0"  checked /><span></span> No
-                                               </label>&nbsp;&nbsp;
-                                               <label class="css-input css-radio css-radio-lg css-radio-success">
-                                                 <input type="radio" name="radio-lbw" id="radio-lbw2" value="1"  /><span></span> Yes
-                                               </label>
-                                             </td>
-                                             <td>
-
-                                             </td>
-                                           </tr>
-                                         </tbody>
-                                       </table>
-                                     </div>
-                                  </div>
-                                </div>
-
-
-                              </div>
-                            </div>
-                            <!-- End card -->
-                          </div>
-                        </form>
-                      </div>
-                      <!-- End row -->
-                  </div>
-
-
-                </main>
-
+                <?php
+                if($result){
+                  include "page/update-complication.php";
+                }else{
+                  include "page/insert-complication.php";
+                }
+                ?>
             </div>
             <!-- .app-layout-container -->
         </div>
@@ -461,22 +123,10 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <script src="../assets/js/app-custom.js"></script>
 
         <!-- Page JS Plugins -->
-       <script src="../assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-       <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
-       <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-
+        <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
         <!-- Page JS Code -->
-        <!-- <script src="../dist/page/obstetric/js/base_forms_validation.js"></script> -->
         <script src="../dist/page/complication/js/custom-code.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
-        <script>
-        $(function()
-        {
-            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-            App.initHelpers(['datepicker']);
-        });
-        </script>
-
     </body>
 
 </html>

@@ -264,7 +264,7 @@
       </div>
     </div>
 
-    <h3>Newborn information</h3>
+    <h3>Infant separation</h3>
 
     <div class="form-group" style="padding-top: 20px;">
       <div class="col-xs-12">

@@ -61,10 +61,7 @@ include "../dist/function/checkuser.inc.php";
                         <?php include "componants/menu.php"; ?>
                         <!-- End drawer navigation -->
 
-                        <!-- <div class="drawer-footer">
-                            <p class="copyright">AppUI Template &copy;</p>
-                            <a href="https://shapebootstrap.net/item/1525731-appui-admin-frontend-template/?ref=rustheme" target="_blank" rel="nofollow">Purchase a license</a>
-                        </div> -->
+
                     </div>
                     <!-- End drawer scroll area -->
                 </aside>

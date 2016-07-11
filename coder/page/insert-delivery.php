@@ -124,7 +124,7 @@
                 </div>
 
 
-                <h3 style="font-weight: 400; color: teal;">Delivery information</h3>
+                <h3 style="font-weight: 400; color: teal;">Perineum</h3>
 
                 <div class="form-group" style="padding-top: 20px;">
                   <div class="col-xs-12">

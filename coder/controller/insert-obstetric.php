@@ -48,15 +48,18 @@ if(isset($_SESSION[$sessionName.'PID'])){
   exit();
 }
 
+$oldID = '';
 $strSQL = sprintf("SELECT * FROM ".$tbprefix."obstetric WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $result = $db->select($strSQL,false,true);
 
 if($result){
+  $oldID = $result[0]['obs_rid'];
   $strSQL = sprintf("DELETE FROM ".$tbprefix."obstetric WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
   $resultDelete = $db->delete($strSQL);
 }
 
-$strSQL = sprintf("INSERT INTO ".$tbprefix."obstetric VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+$strSQL = sprintf("INSERT INTO ".$tbprefix."obstetric VALUE ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+          mysql_real_escape_string($oldID),
           mysql_real_escape_string($_POST['txtGravd']),
           mysql_real_escape_string($_POST['txtParity']),
           mysql_real_escape_string($_POST['txt-ancplace']),

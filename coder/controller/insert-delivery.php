@@ -48,10 +48,12 @@ if(isset($_SESSION[$sessionName.'PID'])){
   exit();
 }
 
+$oldID = '';
 $strSQL = sprintf("SELECT * FROM ".$tbprefix."delivery WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $result = $db->select($strSQL,false,true);
 
 if($result){
+  $oldID = $result[0]['del_rid'];
   $strSQL = sprintf("DELETE FROM ".$tbprefix."delivery WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
   $resultDelete = $db->delete($strSQL);
 }
@@ -67,7 +69,8 @@ if(isset($_POST['radio-perineum'])){
   }
 }
 
-$strSQL = sprintf("INSERT INTO ".$tbprefix."delivery VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+$strSQL = sprintf("INSERT INTO ".$tbprefix."delivery VALUE ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+          mysql_real_escape_string($oldID),
           mysql_real_escape_string($_POST['txt-gadel']),
           mysql_real_escape_string($_POST['txt-datedel']),
           mysql_real_escape_string($_POST['txt-timedel']),

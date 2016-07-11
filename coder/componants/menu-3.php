@@ -4,7 +4,7 @@
         <li class="nav-item nav-drawer-header">Instruments</li>
 
         <li class="nav-item">
-            <a href="close_session.php">
+            <a href="registry.php">
               <?php
               $strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s' LIMIT 0,1", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
               $results = $db->select($strSQL,false,true);
@@ -45,10 +45,12 @@
         <li class="nav-item">
             <a href="add-newborn.php">
               <?php
-              $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s' LIMIT 0,1", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+              $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
               $results = $db->select($strSQL,false,true);
 
+              $nbNo = 0;
               if($results){
+                $nbNo = sizeof($results);
                 ?><i class="ion-checkmark" style="color: teal;"></i><?php
               }
               ?>
@@ -82,14 +84,29 @@
         </li>
 
         <li class="nav-item">
-            <a href="add-post-njewborn.php">Newborn at postnatal</a>
+            <a href="add-post-njewborn.php">
+              <?php
+              $strSQL = sprintf("SELECT * FROM ".$tbprefix."other_postnatal WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+              $results = $db->select($strSQL,false,true);
+
+              if($results){
+                ?><i class="ion-checkmark" style="color: teal;"></i><?php
+              }
+              ?>
+              Newborn at postnatal&nbsp;<br>
+              <?php
+              if($results){
+                print sizeof($results)." of ".$nbNo;
+              }
+              ?>
+            </a>
         </li>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="case-report.php">Case report</a>
-        </li>
+        </li> -->
 
-        <li class="nav-item nav-drawer-header">App</li>
+        <li class="nav-item nav-drawer-header">Closing</li>
 
         <li class="nav-item">
             <a href="close_session.php"><i class="ion-close"></i> Close session</a>

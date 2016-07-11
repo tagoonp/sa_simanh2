@@ -35,7 +35,6 @@ function autofill_unknown(element_id){
 $(document).ready(function(){
 
   if($('#txt-nbid').val()!=''){
-    console.log('asd');
     $('#tab2').trigger('click');
   }
 

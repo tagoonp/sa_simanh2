@@ -64,22 +64,6 @@ if($_POST['radio-gender']==1){
 }else if($_POST['radio-gender']==2){
   $gender = 'Female';
 }
-//
-// if($result){
-//   $strSQL = sprintf("DELETE FROM ".$tbprefix."delivery WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
-//   $resultDelete = $db->delete($strSQL);
-// }
-//
-// $infact = 0;
-// $episio = 0;
-//
-// if(isset($_POST['radio-perineum'])){
-//   if($_POST['radio-perineum']=='0'){
-//     $infact = 1;
-//   }else{
-//     $episio = 1;
-//   }
-// }
 
 $strSQL = sprintf("INSERT INTO ".$tbprefix."outcome VALUE ('', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
           mysql_real_escape_string($gender),

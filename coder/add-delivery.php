@@ -6,6 +6,9 @@ include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
 include "../dist/function/patienthistoryinfo.inc.php";
 
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+$resultCheck = $db->select($strSQL, false, true);
+
 $strSQL = sprintf("SELECT * FROM ".$tbprefix."delivery WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
 $result = $db->select($strSQL, false, true);
 ?>
@@ -115,7 +118,12 @@ $result = $db->select($strSQL, false, true);
 
                 <?php
                 if($result){
-                  include "page/update-delivery.php";
+                  if($info['confirm_status']==1){
+                    include "page/view-delivery.php";
+                  }else{
+                    include "page/update-delivery.php";
+                  }
+
                 }else{
                   include "page/insert-delivery.php";
                 }
