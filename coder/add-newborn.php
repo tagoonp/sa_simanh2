@@ -159,26 +159,24 @@ if(isset($_GET['nbid'])){
                                     </a>
                                   </li>
                                   <?php
-                                }
-                                ?>
+                                }else{
+                                  $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+                                  $resultNBRecord = $db->select($strSQL, false, true);
 
-                                <?php
-                                $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
-                                $resultNBRecord = $db->select($strSQL, false, true);
-
-                                if($resultNBRecord){
-                                  $c = 1;
-                                  foreach ($resultNBRecord as $value) {
-                                    ?>
-                                    <li >
-                                      <a id="tab_<?php print $c;?>" href="#btabs-static-profile-<?php print $c;?>">
-                                        <?php
-                                        print $value['nb_no'];
-                                        ?>
-                                      </a>
-                                    </li>
-                                    <?php
-                                    $c++;
+                                  if($resultNBRecord){
+                                    $c = 1;
+                                    foreach ($resultNBRecord as $value) {
+                                      ?>
+                                      <li >
+                                        <a id="tab_<?php print $c;?>" href="#btabs-static-profile-<?php print $c;?>">
+                                          <?php
+                                          print $value['nb_no'];
+                                          ?>
+                                        </a>
+                                      </li>
+                                      <?php
+                                      $c++;
+                                    }
                                   }
                                 }
                                 ?>

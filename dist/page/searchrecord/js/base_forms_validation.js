@@ -75,16 +75,17 @@ $(function(){
         confirmButtonText: "Yes!",
         closeOnConfirm: false
       }, function(){
-        var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
-
-        jqxhr.always(function(result) {
-          if(result=='Y'){
-            window.location = 'add-new-record-form.php';
-          }else{
-            // window.location = 'index-authen-error.html';
-            // console.log(result);
-          }
-        });
+        // var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
+				//
+        // jqxhr.always(function(result) {
+        //   if(result=='Y'){
+        //     window.location = 'add-new-record-form.php?pid=' + $('#text-patient-id').val();
+        //   }else{
+        //     // window.location = 'index-authen-error.html';
+        //     // console.log(result);
+        //   }
+        // });
+				window.location = 'add-new-record-form.php?pid=' + $('#text-patient-id').val();
       });
     }else{
       $('#btnSearch1').trigger('click');

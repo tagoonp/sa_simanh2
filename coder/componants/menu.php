@@ -26,11 +26,11 @@
             <ul class="nav nav-subnav">
 
                 <li>
-                    <a href="base_ui_buttons.html">Summary</a>
+                    <a href="summary.php">Summary</a>
                 </li>
 
                 <li>
-                    <a href="base_ui_cards.html">Delivery report</a>
+                    <a href="delivert-report.php">Delivery report</a>
                 </li>
 
                 <li>

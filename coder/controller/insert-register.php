@@ -53,6 +53,9 @@ $strSQL = sprintf("INSERT INTO ".$tbprefix."registerrecord VALUE ('', '".date('Y
         );
 $resultInsert = $db->insert($strSQL,false,true);
 
+$_SESSION[$sessionName.'PID'] = $resultInsert['id'];
+session_write_close();
+
 if($resultInsert){
   $db->disconnect();
   ?>
