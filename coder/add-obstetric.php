@@ -4,12 +4,12 @@ include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
-include "../dist/function/patienthistoryinfo.inc.php";
+include "../dist/function/patienthistoryinfo-2.inc.php";
 
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $resultCheck = $db->select($strSQL, false, true);
 
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."obstetric WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."obstetric WHERE record_id = '%s'", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $result = $db->select($strSQL, false, true);
 
 ?>

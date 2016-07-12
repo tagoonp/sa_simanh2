@@ -47,10 +47,6 @@
                               <td class="text-center"><?php print $c; $c++; ?></td>
                               <td class="font-500"><?php print $value['anc_attend']; ?></td>
                               <td class="text-center">
-                                  <!-- <div class="btn-group">
-                                      <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="ion-edit"></i></button>
-                                      <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
-                                  </div> -->
                                   <button type="button" name="button" class="btn btn-primary" onclick="fillFacility('<?php print $value['anc_attend']; ?>')"><i class="fa fa-check"></i></button>
                               </td>
                           </tr>

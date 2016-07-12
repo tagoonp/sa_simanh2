@@ -7,9 +7,9 @@
             <a href="registry.php">
               <?php
               $strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s' LIMIT 0,1", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
-              $results = $db->select($strSQL,false,true);
+              $results1 = $db->select($strSQL,false,true);
 
-              if($results){
+              if($results1){
                 ?><i class="ion-checkmark" style="color: teal;"></i><?php
               }
               ?>
@@ -115,6 +115,28 @@
         <li class="nav-item">
             <a href="../signout.php"><i class="ion-log-out"></i> Sign out</a>
         </li>
+
+        <?php
+        if($results1[0]['confirm_status']!=1){
+          ?>
+          <li class="nav-item nav-drawer-header">Other function</li>
+          <li class="nav-item">
+              <a href="note.php"><i class="fa fa-envelope-o"></i> Note this case&nbsp;
+                <?php
+                $strSQL = sprintf("SELECT * FROM ".$tbprefix."note WHERE record_id = '%s' ", mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+                $results = $db->select($strSQL,false,true);
+
+                if($results){
+                  ?>
+                  <span class="badge" style="background: red; font-size: 1.2em;" ><?php print sizeof($results); ?></span>
+                  <?php
+                }
+
+                ?></a>
+          </li>
+          <?php
+        }
+        ?>
 
 
 

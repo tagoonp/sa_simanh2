@@ -55,8 +55,21 @@ if($result){
       </td>
       <td class="text-center">
         <div class="btn-group">
-            <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client" onclick="createsession('<?php print $value['pid'];?>')"><i class="ion-edit"></i></button>
-            <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
+          <?php
+          if($value['confirm_status']==1){
+            ?>
+            <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="View Client" onclick="createsession('<?php print $value['record_id'];?>')"><i class="ion-search"></i></button>
+            <button class="btn btn-xs btn-app-light" type="button" data-toggle="tooltip" title="Edit Client" disable onclick="createsession('<?php print $value['record_id'];?>')"><i class="ion-edit"></i></button>
+            <button class="btn btn-xs btn-app-light" type="button" data-toggle="tooltip" title="Remove Client" disable><i class="ion-close"></i></button>
+            <?php
+          }else{
+            ?>
+            <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Edit Client" onclick="createsession('<?php print $value['record_id'];?>')"><i class="ion-edit"></i></button>
+            <button class="btn btn-xs btn-app-red" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
+            <?php
+          }
+          ?>
+
         </div>
       </td>
     </tr>

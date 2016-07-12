@@ -4,11 +4,11 @@ include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
-include "../dist/function/patienthistoryinfo-2.inc.php";
+include "../dist/function/patienthistoryinfo.inc.php";
 
 $resultNB = false;
 if(isset($_GET['nbid'])){
-  $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'", mysql_real_escape_string($_GET['nbid']), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+  $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'", mysql_real_escape_string($_GET['nbid']), mysql_real_escape_string($info['record_id']));
   $resultNB = $db->select($strSQL, false, true);
 
   if(!$resultNB){
@@ -162,32 +162,11 @@ if(isset($_GET['nbid'])){
                                 }
                                 ?>
 
-                                <?php
-                                $strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
-                                $resultNBRecord = $db->select($strSQL, false, true);
-
-                                if($resultNBRecord){
-                                  $c = 1;
-                                  foreach ($resultNBRecord as $value) {
-                                    ?>
-                                    <li >
-                                      <a id="tab_<?php print $c;?>" href="#btabs-static-profile-<?php print $c;?>">
-                                        <?php
-                                        print $value['nb_no'];
-                                        ?>
-                                      </a>
-                                    </li>
-                                    <?php
-                                    $c++;
-                                  }
-                                }
-                                ?>
-
 
                             </ul>
                             <div class="card-block tab-content">
                                 <div class="tab-pane active" id="btabs-static-home">
-                                  <h3 style="font-weight: 400; color: teal;">Newborn list</h3>
+                                  <h3>Newborn list</h3>
                                   <div class="table-responsive">
                                     <table class="table table-striped table-borderless">
                                             <thead>
@@ -197,14 +176,7 @@ if(isset($_GET['nbid'])){
                                                     <th class="hidden-xs w-10 text-center">Alive</th>
                                                     <th class="hidden-xs w-10 text-center">Stillbirth</th>
                                                     <th class="hidden-xs w-20">Birth weight</th>
-                                                    <?php
-                                                      if($info['confirm_status']!=1){
-                                                        ?>
-                                                        <th class="text-center" style="width: 100px;">Actions</th>
-                                                        <?php
-                                                      }
-                                                    ?>
-
+                                                    <th class="text-center" style="width: 100px;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -276,6 +248,7 @@ if(isset($_GET['nbid'])){
                                                           <?php
                                                         }
                                                       ?>
+
                                                   </tr>
                                                   <?php
                                                   $c++;
@@ -301,18 +274,6 @@ if(isset($_GET['nbid'])){
                                     <?php include "page/insert-outcome.php"; ?>
                                   </div>
                                   <?php
-                                }else{
-                                  if($resultNBRecord){
-                                    $c = 1;
-                                    foreach ($resultNBRecord as $value) {
-                                      ?>
-                                      <div class="tab-pane" id="btabs-static-profile-<?php print $c;?>" >
-                                        <?php include "page/view-newborn.php"; ?>
-                                      </div>
-                                      <?php
-                                      $c++;
-                                    }
-                                  }
                                 }
                                 ?>
 

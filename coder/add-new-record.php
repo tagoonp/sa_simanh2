@@ -193,19 +193,12 @@ include "../dist/function/checkuser.inc.php";
         <script src="../assets/js/app-custom.js"></script>
 
         <!-- Page Plugins -->
-        <script src="../assets/js/plugins/slick/slick.min.js"></script>
         <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
         <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
         <!-- Page JS Code -->
-        <!-- <script src="../assets/js/pages/index.js"></script> -->
-        <script src="../dist/page/login/js/base_forms_validation.js"></script>
-        <script>
-            $(function()
-            {
-                // Init page helpers (Slick Slider plugin)
-                App.initHelpers('slick');
-            });
-        </script>
+        <!-- <script src="../dist/page/login/js/base_forms_validation.js"></script> -->
+        <script src="../dist/page/searchrecord/js/base_forms_validation.js"></script>
+
 
     </body>
 

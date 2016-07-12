@@ -3,11 +3,6 @@ session_start();
 include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
-include "../dist/function/patientsession.inc.php";
-include "../dist/function/patienthistoryinfo-2.inc.php";
-
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE record_id = '%s'", mysql_real_escape_string($info['record_id']));
-$result = $db->select($strSQL, false, true);
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +32,6 @@ $result = $db->select($strSQL, false, true);
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="../assets/js/plugins/slick/slick.min.css" />
         <link rel="stylesheet" href="../assets/js/plugins/slick/slick-theme.min.css" />
-        <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
 
         <!-- AppUI CSS stylesheets -->
         <link rel="stylesheet" id="css-font-awesome" href="../assets/css/font-awesome.css" />
@@ -47,9 +41,6 @@ $result = $db->select($strSQL, false, true);
         <link rel="stylesheet" id="css-app-custom" href="../assets/css/app-custom.css" />
         <link rel="stylesheet" type="text/css" href="../library/sweetalert/dist/sweetalert.css">
         <!-- End Stylesheets -->
-
-
-
     </head>
 
     <body class="app-ui layout-has-drawer layout-has-fixed-header">
@@ -67,8 +58,9 @@ $result = $db->select($strSQL, false, true);
                         </div>
 
                         <!-- Drawer navigation -->
-                        <?php include "componants/menu-3.php"; ?>
+                        <?php include "componants/menu.php"; ?>
                         <!-- End drawer navigation -->
+
 
                     </div>
                     <!-- End drawer scroll area -->
@@ -93,13 +85,22 @@ $result = $db->select($strSQL, false, true);
                         					<span class="icon-bar"></span>
                         				</button>
                                 <span class="navbar-page-title">
-                        					Birth registry
+                        					Add new record
                         				</span>
                             </div>
 
                             <div class="collapse navbar-collapse" id="header-navbar-collapse">
                                 <!-- Header search form -->
-
+                                <form class="navbar-form navbar-left app-search-form" role="search">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input class="form-control" type="search" id="search-input" placeholder="Patient's keyword" />
+                                            <span class="input-group-btn">
+                              								<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
+                              							</span>
+                                        </div>
+                                    </div>
+                                </form>
 
                                 <!-- .navbar-left -->
                                 <?php include "componants/nav-left.php"; ?>
@@ -113,19 +114,74 @@ $result = $db->select($strSQL, false, true);
                 </header>
                 <!-- End header -->
 
-                <?php
-                if($result[0]['confirm_status']==1){
-                  include "page/view-register.php";
-                }else{
-                  include "page/update-register.php";
-                }
-                ?>
+                <main class="app-layout-content">
+
+                  <!-- Page Content -->
+                  <div class="container-fluid p-y-md">
+                      <!-- Stats -->
+                      <div class="row">
+                        <form class="js-validation-before form-horizontal m-t-sm" id="add-new-record1" onsubmit="return false;">
+                          <div class="col-xs-12">
+                            <!-- Add card -->
+                            <div class="card">
+                              <div class="card-header bg-teal bg-inverse">
+                                  <h4>Searcg patient's record</h4>
+                              </div>
+                              <div class="card-block" style="padding-top: 30px;">
+                                <!-- <h3>Patient's ID or Keyword</h3> -->
+
+                                <!-- <div class="alert alert-info">
+                                  <p><strong>Remark!</strong>&nbsp;&nbsp;This session use for search any patient's history before adding new record. If you sure this patient's is new case (not follow-up case), you can enter patient's ID and click "Add new record" suddenly..</p>
+                                </div> -->
+
+                                <div class="form-group" style="padding-top: 30px;">
+                                  <div class="col-sm-12">
+                                      <div class="form-material">
+                                          <input class="form-control" type="text" id="text-patient-id" name="text-patient-id" placeholder="Please enter patient's key, such as ID No, / Passport ID / Date of bitrh [YYMMDD]" />
+                                          <label for="material-text">Patient's key <span style="color:red;">**</span></label>
+                                      </div>
+                                  </div>
+                                </div>
+
+                                <div class="row narrow-gutter">
+                                    <div class="col-xs-12 text-left">
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                        <button type="submit" id="btnSearch1"class="btn btn-app-teal"><i class="ion-search"></i> Search history</button>
+                                        <!-- <button type="button" id="btnAddnew1" class="btn btn-app-red"><i class="ion-plus"></i> Add new record</button> -->
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- End card -->
+                          </div>
+                        </form>
+                      </div>
+                      <!-- End row -->
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="card">
+                            <div class="card-header bg-green bg-inverse">
+                                <h4>Histories record</h4>
+                            </div>
+                            <div class="card-block">
+                              <p>
+                                <span id="historyResult">No result</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+
+                </main>
 
             </div>
             <!-- .app-layout-container -->
         </div>
         <!-- .app-layout-canvas -->
-
+        <div class="app-ui-mask-modal"></div>
 
 
         <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
@@ -137,44 +193,21 @@ $result = $db->select($strSQL, false, true);
         <script src="../assets/js/app.js"></script>
         <script src="../assets/js/app-custom.js"></script>
 
-        <!-- Page JS Plugins -->
-       <script src="../assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-       <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
-       <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-
+        <!-- Page Plugins -->
+        <!-- <script src="../assets/js/plugins/slick/slick.min.js"></script> -->
+        <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
         <!-- Page JS Code -->
-        <script src="../dist/page/register/js/base_forms_validation.js"></script>
-        <script src="../library/xpl/js/xpl.js"></script>
-
-        <script src="../dist/page/register/js/geolocation.js" type="text/javascript"></script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewI1LswH0coZUPDe8Pvy39j4sbxmgCZU" async defer></script>
-        <script>
-        $(function()
-        {
-            // Init page helpers (BS Datepicker + BS Colorpicker + Select2 + Masked Input + Tags Inputs plugins)
-            App.initHelpers(['datepicker']);
-        });
-        </script>
+        <!-- <script src="../assets/js/pages/index.js"></script> -->
+        <script src="../dist/page/searchrecord/js/base_forms_validation.js"></script>
+        <!-- <script>
+            $(function()
+            {
+                // Init page helpers (Slick Slider plugin)
+                App.initHelpers('slick');
+            });
+        </script> -->
 
     </body>
-    <!-- <div class="" id="map-canvas" style="width: 100%; height: 200px;">
-
-    </div> -->
 
 </html>
-
-<?php
-function calcutateAge($dob){
-
-        $dob = date("Y-m-d",strtotime($dob));
-
-        $dobObject = new DateTime($dob);
-        $nowObject = new DateTime();
-
-        $diff = $dobObject->diff($nowObject);
-
-        return $diff->y;
-
-}
-?>

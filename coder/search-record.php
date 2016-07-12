@@ -29,10 +29,6 @@ include "../dist/function/checkuser.inc.php";
         <!-- Google fonts -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
 
-        <!-- Page JS Plugins CSS -->
-        <link rel="stylesheet" href="../assets/js/plugins/slick/slick.min.css" />
-        <link rel="stylesheet" href="../assets/js/plugins/slick/slick-theme.min.css" />
-
         <!-- AppUI CSS stylesheets -->
         <link rel="stylesheet" id="css-font-awesome" href="../assets/css/font-awesome.css" />
         <link rel="stylesheet" id="css-ionicons" href="../assets/css/ionicons.css" />
@@ -194,19 +190,11 @@ include "../dist/function/checkuser.inc.php";
         <script src="../assets/js/app-custom.js"></script>
 
         <!-- Page Plugins -->
-        <!-- <script src="../assets/js/plugins/slick/slick.min.js"></script> -->
         <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
         <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
         <!-- Page JS Code -->
-        <!-- <script src="../assets/js/pages/index.js"></script> -->
         <script src="../dist/page/searchrecord/js/base_forms_validation.js"></script>
-        <!-- <script>
-            $(function()
-            {
-                // Init page helpers (Slick Slider plugin)
-                App.initHelpers('slick');
-            });
-        </script> -->
+
 
     </body>
 

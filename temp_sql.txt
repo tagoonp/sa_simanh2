@@ -1,0 +1,2 @@
+INSERT INTO fmn1_geolocation (geo_lat, geo_lng, record_id)
+SELECT d.institute_latitute asd, d.institute_longitude dsa, a.record_id ewq FROM fmn1_registerrecord a inner join fmn1_useraccount b on a.username = b.username inner join fmn1_userdescription c on a.username = c.username inner join fmn1_institute d on c.institute_id = d.institute_id WHERE 1 ORDER BY a.record_id

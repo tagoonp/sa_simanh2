@@ -68,13 +68,14 @@ $(function(){
 
 
 
-        var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
-
-        jqxhr.always(function(result) {
-          if(result=='Y'){
-            window.location = 'add-new-record-form.php';
-          }
-        });
+        // var jqxhr = $.post( "controller/createsession.php", { keyword : $('#text-patient-id').val() },function() {});
+				//
+        // jqxhr.always(function(result) {
+        //   if(result=='Y'){
+        //     window.location = 'add-new-record-form.php?pid=' + $('#text-patient-id').val();
+        //   }
+        // });
+				window.location = 'add-new-record-form.php?pid=' + $('#text-patient-id').val();
       });
     }else{
       $('#btnSearch1').trigger('click');

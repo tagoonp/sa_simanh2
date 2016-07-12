@@ -54,8 +54,8 @@ if($result){
       </td>
       <td class="text-center">
         <div class="btn-group">
-            <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client" onclick="createsession2('<?php print $value['record_id'];?>')"><i class="ion-edit"></i></button>
-            <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
+            <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Edit Client" onclick="createsession2('<?php print $value['record_id'];?>')"><i class="ion-edit"></i></button>
+            <button class="btn btn-xs btn-app-teal" type="button" data-toggle="tooltip" title="Remove Client"><i class="ion-close"></i></button>
         </div>
       </td>
     </tr>

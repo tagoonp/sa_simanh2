@@ -4,7 +4,7 @@ include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 include "../dist/function/patientsession.inc.php";
-include "../dist/function/patienthistoryinfo.inc.php";
+include "../dist/function/patienthistoryinfo-2.inc.php";
 
 $resultNB = false;
 if(isset($_GET['nbid'])){

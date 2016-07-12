@@ -46,7 +46,7 @@
 
         <li class="nav-item nav-drawer-header">Other function</li>
         <li class="nav-item">
-            <a href="frontend_home.html"><i class="fa fa-envelope-o"></i> Send message</a>
+            <a href="frontend_home.html"><i class="fa fa-envelope-o"></i> Send message to admin</a>
         </li>
 
 

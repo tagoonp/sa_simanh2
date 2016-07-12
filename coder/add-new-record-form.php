@@ -3,8 +3,8 @@ session_start();
 include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
-include "../dist/function/patientsession.inc.php";
-include "../dist/function/patienthistoryinfo.inc.php";
+// include "../dist/function/patientsession.inc.php";
+// include "../dist/function/patienthistoryinfo.inc.php";
 ?>
 <!DOCTYPE html>
 
@@ -60,7 +60,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                         </div>
 
                         <!-- Drawer navigation -->
-                        <?php include "componants/menu-2.php"; ?>
+                        <?php include "componants/menu.php"; ?>
                         <!-- End drawer navigation -->
 
                     </div>
@@ -73,12 +73,12 @@ include "../dist/function/patienthistoryinfo.inc.php";
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
                         					<span class="sr-only">Toggle navigation</span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
-                        				</button>
+                        				</button> -->
                                 <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
                         					<span class="sr-only">Toggle drawer</span>
                         					<span class="icon-bar"></span>
@@ -112,14 +112,6 @@ include "../dist/function/patienthistoryinfo.inc.php";
                   <div class="container-fluid p-y-md">
                       <!-- Stats -->
                       <div class="row">
-                        <div class="col-sm-6 text-left">
-                          <h3 style="margin-top: 0px;">Patient's ID : <?php print $_SESSION[$sessionName.'PID']; ?></h3>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                          <button type="button" class="btn btn-app-red" onclick="xpl_custom_function.common_redirect('close_session.php')">Close session</button>
-                        </div>
-                      </div>
-                      <div class="row">
                         <form class="js-validation-register form-horizontal m-t-sm"  method="post" action="controller/insert-register.php">
                           <div class="col-xs-12">
                             <!-- Add card -->
@@ -128,21 +120,29 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   <h4>Add new patient's record</h4>
                                   <ul class="card-actions">
                                     <li>
-                                        <!-- To toggle card fullscreen, add the following properties to your button: data-toggle="card-action" data-action="fullscreen_toggle" -->
-                                        <button type="button" data-toggle="card-action" data-action="fullscreen_toggle"></button>
+                                      <button type="button" data-toggle="card-action" data-action="fullscreen_toggle"></button>
                                     </li>
                                   </ul>
                               </div>
                               <div class="card-block" style="padding-top: 30px;">
                                 <!-- Geolocation input div -->
-                                <div class="geolocation">
-                                  <h3>Geolocation data</h3>
+                                <div class="geolocation"  style="display:none;">
+                                  <h3 style="font-weight: 400; color: teal;">Geolocation data</h3>
+
+                                  <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="form-material">
+                                            <input class="form-control" type="text" id="txt-inst" name="txt-inst" placeholder="Please enter longitude" value="<?php print $valueUserinfo['institute_id'];?>" />
+                                            <label for="material-text">Institute id</label>
+                                        </div>
+                                    </div>
+                                  </div>
                                   <div class="row">
                                     <div class="col-sm-6">
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-foldernumber" name="txt-foldernumber" placeholder="Please enter your username" />
+                                                <input class="form-control" type="text" id="txt-lat" name="txt-lat" placeholder="Please enter longitude" />
                                                 <label for="material-text">Latitute</label>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-foldernumber" name="txt-foldernumber" placeholder="Please enter your username" />
+                                                <input class="form-control" type="text" id="txt-lng" name="txt-lng" placeholder="Please enter  latitude" />
                                                 <label for="material-text">Longtitute</label>
                                             </div>
                                         </div>
@@ -161,13 +161,13 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   </div>
                                 </div>
                                 <!-- End geolocation input div -->
-                                <h3>Main admission data</h3>
+                                <h3 style="font-weight: 400; color: teal;">Main admission data</h3>
                                 <div class="row" style="padding-top: 20px;">
                                   <div class="col-sm-6">
                                     <div class="form-group">
                                       <div class="col-sm-12">
                                           <div class="form-material">
-                                            <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php print date('Y-m-d');?>">
+                                            <input class="js-datepicker form-control" type="text" id="txt-dateadm" name="txt-dateadm" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="">
                                             <label for="example-datepicker4">Date of admission <span style="color: red;">**</span></label>
                                           </div>
                                       </div>
@@ -177,7 +177,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                     <div class="form-group">
                                       <div class="col-sm-12">
                                           <div class="form-material">
-                                              <input class="form-control" type="time" id="txt-timeadm" name="txt-timeadm" placeholder="Please enter time of admission" value="<?php print date('H:m'); ?>" />
+                                              <input class="form-control" type="time" id="txt-timeadm" name="txt-timeadm" placeholder="Please enter time of admission" value="" />
                                               <label for="material-text">Time of admission <span style="color: red;">**</span></label>
                                           </div>
                                       </div>
@@ -241,12 +241,12 @@ include "../dist/function/patienthistoryinfo.inc.php";
 
                                 </div>
                                 <!-- End referCondition -->
-                                <h3>Demographic information</h3>
+                                <h3 style="font-weight: 400; color: teal;">Demographic information</h3>
 
                                   <div class="form-group" style="padding-top: 30px;">
                                     <div class="col-sm-12">
                                         <div class="form-material">
-                                            <input class="form-control" type="text" id="txt-pid" name="txt-pid" placeholder="Please enter patient's ID" readonly value="<?php print $_SESSION[$sessionName.'PID']; ?>" />
+                                            <input class="form-control" type="text" id="txt-pid" name="txt-pid" placeholder="Please enter patient's ID" readonly value="<?php print $_GET['pid']; ?>" />
                                             <label for="material-text">ID No, / Passport ID / Date of bitrh [YYMMDD] <span style="color: red;">**</span></label>
                                         </div>
                                     </div>
@@ -257,7 +257,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-fname" name="txt-fname" placeholder="Please enter patient's first name..." value="<?php if($resultPinfo){ print $info['p_fname']; } ?>" />
+                                                <input class="form-control" type="text" id="txt-fname" name="txt-fname" placeholder="Please enter patient's first name..." value="" />
                                                 <label for="material-text">First name <span style="color: red;">**</span></label>
                                             </div>
                                         </div>
@@ -268,7 +268,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-mname" name="txt-mname" placeholder="Enter middle name..." value="<?php if($resultPinfo){ print $info['p_mname']; } ?>"/>
+                                                <input class="form-control" type="text" id="txt-mname" name="txt-mname" placeholder="Enter middle name..." value=""/>
                                                 <label for="material-text">Middle name</label>
                                             </div>
                                         </div>
@@ -279,7 +279,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-lname" name="txt-lname" placeholder="Enter last name..." value="<?php if($resultPinfo){ print $info['p_lname']; } ?>" />
+                                                <input class="form-control" type="text" id="txt-lname" name="txt-lname" placeholder="Enter last name..." value="" />
                                                 <label for="material-text">Lastname</label>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   <div class="form-group">
                                     <div class="col-sm-12">
                                         <div class="form-material">
-                                          <textarea class="form-control" name="txt-address" id="txt-address" rows="4" cols="40" placeholder="Enter patient's address..."><?php if($resultPinfo){ print $info['p_address']; } ?></textarea>
+                                          <textarea class="form-control" name="txt-address" id="txt-address" rows="4" cols="40" placeholder="Enter patient's address..."></textarea>
                                           <label for="material-text">Address</label>
                                         </div>
                                     </div>
@@ -299,7 +299,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                   <div class="form-group">
                                     <div class="col-sm-12">
                                         <div class="form-material">
-                                            <input class="form-control" type="text"  id="txt-phone" name="txt-phone" placeholder="Enter phone number..." value="<?php if($resultPinfo){ print $info['p_phone']; } ?>" />
+                                            <input class="form-control" type="text"  id="txt-phone" name="txt-phone" placeholder="Enter phone number..." value="" />
                                             <label for="material-text">Phone number</label>
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="js-datepicker form-control" type="text" id="txt-dob" name="txt-dob" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php if($resultPinfo){ print $info['p_dob']; } ?>">
+                                                <input class="js-datepicker form-control" type="text" id="txt-dob" name="txt-dob" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="">
                                                 <label for="material-text">Date of birth</label>
                                             </div>
                                         </div>
@@ -321,7 +321,7 @@ include "../dist/function/patienthistoryinfo.inc.php";
                                       <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="form-material">
-                                                <input class="form-control" type="text" id="txt-age" name="txt-age" placeholder="Please enter age of patient if system cannot calcuate automatically..." value="<?php if($resultPinfo){ print calcutateAge($info['p_dob']); } ?>" />
+                                                <input class="form-control" type="text" id="txt-age" name="txt-age" placeholder="Please enter age of patient if system cannot calcuate automatically..." value="" />
                                                 <label for="material-text">Age <span style="color: red;">**</span></label>
                                             </div>
                                         </div>
@@ -374,6 +374,10 @@ include "../dist/function/patienthistoryinfo.inc.php";
         <!-- Page JS Code -->
         <script src="../dist/page/register/js/base_forms_validation.js"></script>
         <script src="../library/xpl/js/xpl.js"></script>
+
+        <script src="../dist/page/register/js/geolocation.js" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAewI1LswH0coZUPDe8Pvy39j4sbxmgCZU" async defer></script>
+
         <script>
         $(function()
         {

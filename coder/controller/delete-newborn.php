@@ -93,6 +93,9 @@ if(!$result){
 $strSQL = sprintf("DELETE FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'",mysql_real_escape_string($nbno), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
 $resultDel = $db->delete($strSQL);
 
+$strSQL = sprintf("DELETE FROM ".$tbprefix."other_postnatal WHERE nb_no = '%s' and record_id = '%s'",mysql_real_escape_string($nbno), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+$resultDel = $db->delete($strSQL);
+
 
 if($resultDel){
   $db->disconnect();
