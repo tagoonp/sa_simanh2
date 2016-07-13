@@ -34,7 +34,11 @@
                 </li>
 
                 <li>
-                    <a href="base_ui_cards_api.html">DHIS report</a>
+                    <a href="dhis.php">DHIS report</a>
+                </li>
+
+                <li>
+                    <a href="Robson-classification.php">Robson Classification</a>
                 </li>
 
             </ul>
