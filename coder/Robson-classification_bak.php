@@ -197,11 +197,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   1
                                                 </td>
                                                 <td class="text-center">
-
-                                                  <div class="progress active" style="padding: 0px; margin: 0px;">
-                                                      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel1">0%</span></div>
+                                                  <div class="progress">
+                                                      <div class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">30%</div>
                                                   </div>
-                                                  <?php //include "componants/robson/robson-class1.php"; ?>
+                                                  <?php include "componants/robson/robson-class1.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -210,7 +209,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   2
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class2.php"; ?>
+                                                  <?php include "componants/robson/robson-class2.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -219,7 +218,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   2a
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class2a.php"; ?>
+                                                  <?php include "componants/robson/robson-class2a.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -228,7 +227,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   2b
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class2b.php"; ?>
+                                                  <?php include "componants/robson/robson-class2b.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -237,7 +236,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   3
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class3.php"; ?>
+                                                  <?php include "componants/robson/robson-class3.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -246,7 +245,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   4
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class4.php"; ?>
+                                                  <?php include "componants/robson/robson-class4.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -255,7 +254,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   4a
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class4a.php"; ?>
+                                                  <?php include "componants/robson/robson-class4a.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -264,7 +263,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   4b
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class4b.php"; ?>
+                                                  <?php include "componants/robson/robson-class4b.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -273,7 +272,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   5
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class5.php"; ?>
+                                                  <?php include "componants/robson/robson-class5.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -282,7 +281,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   6
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class6.php"; ?>
+                                                  <?php include "componants/robson/robson-class6.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -291,7 +290,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   7
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class7.php"; ?>
+                                                  <?php include "componants/robson/robson-class7.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -300,7 +299,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   8
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class8.php"; ?>
+                                                  <?php include "componants/robson/robson-class8.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -309,7 +308,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   9
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class9.php"; ?>
+                                                  <?php include "componants/robson/robson-class9.php"; ?>
                                                 </td>
                                               </tr>
 
@@ -318,7 +317,7 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   10
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class10.php"; ?>
+                                                  <?php include "componants/robson/robson-class10.php"; ?>
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -376,26 +375,6 @@ $totalRob2 = 0; $totalRob4 = 0;
             function common_redirect(){
               window.location = 'delivert-report.php?startdate=' + $('#txt-startdate').val() + '&enddate=' + $('#txt-enddate').val();
             }
-        </script>
-        <script type="text/javascript">
-          $i = 0;
-          $(document).ready(function(){
-            iniInterval($i);
-          });
-
-          function loadBar(i){
-            $('.progress-bar').css('width', i+'%').attr('aria-valuenow', i);
-            $('#loadLabel1').text(((i)-1 )+ '%');
-          }
-
-          function iniInterval(i){
-            $i = i;
-            setTimeout(function(){
-              loadBar($i);
-              $i++;
-              iniInterval($i);
-            }, 300);
-          }
         </script>
 
     </body>

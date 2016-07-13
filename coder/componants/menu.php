@@ -53,7 +53,9 @@
             <a href="frontend_home.html"><i class="fa fa-envelope-o"></i> Send message to admin</a>
         </li>
 
-
-
+        <li class="nav-item nav-drawer-header">Closing</li>
+        <li class="nav-item">
+            <a href="../signout.php"><i class="ion-log-out"></i> Sign out</a>
+        </li>
     </ul>
 </nav>
