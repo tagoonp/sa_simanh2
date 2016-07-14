@@ -140,12 +140,19 @@ $totalRob2 = 0; $totalRob4 = 0;
                                         <div class="form-group" style="padding-top: 10px;">
                                             <div class="col-md-12">
                                                 <div class="form-material">
+                                                    <input class="js-datepicker form-control" type="text" id="txt-institute" name="txt-institute" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php print $valueUserinfo['institute_id']; ?>">
+                                                    <label for="example-datepicker4">Start date <span style="color: red;">**</span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="padding-top: 10px;">
+                                            <div class="col-md-12">
+                                                <div class="form-material">
                                                     <input class="js-datepicker form-control" type="text" id="txt-startdate" name="txt-startdate" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" value="<?php print $start_date; ?>">
                                                     <label for="example-datepicker4">Start date <span style="color: red;">**</span></label>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="form-group"  style="padding-top: 10px;">
                                             <div class="col-md-12">
                                                 <div class="form-material">
@@ -197,11 +204,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   1
                                                 </td>
                                                 <td class="text-center">
-
-                                                  <div class="progress active" style="padding: 0px; margin: 0px;">
-                                                      <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel1">0%</span></div>
+                                                  <div id="pg1" class="progress active" style="padding: 0px; margin: 0px;">
+                                                      <div id="progress-bar1" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel1">0%</span></div>
                                                   </div>
-                                                  <?php //include "componants/robson/robson-class1.php"; ?>
+                                                  <div id="pgr1" style="display:none;"></div>
                                                 </td>
                                               </tr>
 
@@ -210,7 +216,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   2
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class2.php"; ?>
+                                                  <div id="pg2" class="progress active" style="padding: 0px; margin: 0px;">
+                                                      <div id="progress-bar2" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel2">0%</span></div>
+                                                  </div>
+                                                  <div id="pgr2" style="display:none;"></div>
                                                 </td>
                                               </tr>
 
@@ -237,7 +246,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   3
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class3.php"; ?>
+                                                  <div id="pg3" class="progress active" style="padding: 0px; margin: 0px;">
+                                                      <div id="progress-bar3" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel3">0%</span></div>
+                                                  </div>
+                                                  <div id="pgr3" style="display:none;"></div>
                                                 </td>
                                               </tr>
 
@@ -246,7 +258,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   4
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class4.php"; ?>
+                                                  <div id="pg4" class="progress active" style="padding: 0px; margin: 0px;">
+                                                      <div id="progress-bar4" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel4">0%</span></div>
+                                                  </div>
+                                                  <div id="pgr4" style="display:none;"></div>
                                                 </td>
                                               </tr>
 
@@ -273,7 +288,10 @@ $totalRob2 = 0; $totalRob4 = 0;
                                                   5
                                                 </td>
                                                 <td class="text-center">
-                                                  <?php //include "componants/robson/robson-class5.php"; ?>
+                                                  <div id="pg5" class="progress active" style="padding: 0px; margin: 0px;">
+                                                      <div id="progress-bar5" class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="loadLabel5">0%</span></div>
+                                                  </div>
+                                                  <div id="pgr5" style="display:none;"></div>
                                                 </td>
                                               </tr>
 
@@ -378,24 +396,241 @@ $totalRob2 = 0; $totalRob4 = 0;
             }
         </script>
         <script type="text/javascript">
-          $i = 0;
+          $i = 0; $j = 0; $k = 0; $l = 0; $m = 0;
+          $rob1 = 0; $rob2 = 0; $rob3 = 0; $rob4 = 0; $rob5 = 0;
           $(document).ready(function(){
-            iniInterval($i);
+            // iniInterval($i);
+            loadBar1($i);
+            setTimeout(function(){
+              loadBar2($j);
+            }, 300);
+
+            setTimeout(function(){
+              loadBar3($k);
+            }, 600);
+
+            setTimeout(function(){
+              loadBar4($l);
+            }, 900);
+
+            setTimeout(function(){
+              loadBar5($m);
+            }, 200);
+
+            loadGroup1();
+            loadGroup2();
+            loadGroup3();
+            loadGroup4();
+            loadGroup5();
+
           });
 
-          function loadBar(i){
-            $('.progress-bar').css('width', i+'%').attr('aria-valuenow', i);
+          function loadBar1(i){
+            $('#progress-bar1').css('width', i+'%').attr('aria-valuenow', i);
             $('#loadLabel1').text(((i)-1 )+ '%');
+            $i++;
+            iniInterval1($i);
           }
 
-          function iniInterval(i){
-            $i = i;
-            setTimeout(function(){
-              loadBar($i);
-              $i++;
-              iniInterval($i);
-            }, 300);
+          function loadBar2(j){
+            $('#progress-bar2').css('width', j+'%').attr('aria-valuenow', j);
+            $('#loadLabel2').text(((j)-1 )+ '%');
+            $j++;
+            iniInterval2($j);
           }
+
+          function loadBar3(k){
+            $('#progress-bar3').css('width', k+'%').attr('aria-valuenow', k);
+            $('#loadLabel3').text(((k)-1 )+ '%');
+            $k++;
+            iniInterval3($k);
+          }
+
+          function loadBar4(l){
+            $('#progress-bar4').css('width', l+'%').attr('aria-valuenow', l);
+            $('#loadLabel4').text(((l)-1 )+ '%');
+            $l++;
+            iniInterval4($l);
+          }
+
+          function loadBar5(m){
+            $('#progress-bar5').css('width', m+'%').attr('aria-valuenow', m);
+            $('#loadLabel5').text(((m)-1 )+ '%');
+            $m++;
+            iniInterval5($m);
+          }
+
+          function loadGroup1(){
+            var jqxhr = $.post( "componants/robson_service/robson-class1.php", { start_date : $('#txt-startdate').val(), end_date : $('#txt-enddate').val(), institute: $('#txt-institute').val()},function() {});
+
+            jqxhr.done(function() {
+              $('#progress-bar1').css('width', '60%').attr('aria-valuenow', '60');
+              $('#loadLabel1').text('60%');
+              $rob1 = 1;
+              $i = 60;
+            });
+
+            jqxhr.always(function(result) {
+              $('#progress-bar1').css('width', '100%').attr('aria-valuenow', '100');
+              $('#loadLabel1').text('100%');
+              $rob1 = 2;
+              $i = 100;
+              setTimeout(function(){
+                $('#pg1').hide();
+                $('#pgr1').show();
+                $('#pgr1').text(result);
+              },500);
+
+            });
+          }
+
+          function loadGroup2(){
+            var jqxhr = $.post( "componants/robson_service/robson-class2.php", { start_date : $('#txt-startdate').val(), end_date : $('#txt-enddate').val(), institute: $('#txt-institute').val()},function() {});
+
+            jqxhr.done(function() {
+              $('#progress-bar2').css('width', '60%').attr('aria-valuenow', '60');
+              $('#loadLabel2').text('60%');
+              $rob2 = 1;
+              $j = 60;
+            });
+
+            jqxhr.always(function(result) {
+              $('#progress-bar2').css('width', '100%').attr('aria-valuenow', '100');
+              $('#loadLabel2').text('100%');
+              $rob2 = 2;
+              $j = 100;
+              setTimeout(function(){
+                $('#pg2').hide();
+                $('#pgr2').show();
+                $('#pgr2').text(result);
+              },500);
+            });
+          }
+
+          function loadGroup3(){
+            var jqxhr = $.post( "componants/robson_service/robson-class3.php", { start_date : $('#txt-startdate').val(), end_date : $('#txt-enddate').val(), institute: $('#txt-institute').val()},function() {});
+
+            jqxhr.done(function() {
+              $('#progress-bar3').css('width', '60%').attr('aria-valuenow', '60');
+              $('#loadLabel3').text('60%');
+              $rob3 = 1;
+              $k = 60;
+            });
+
+            jqxhr.always(function(result) {
+              $('#progress-bar3').css('width', '100%').attr('aria-valuenow', '100');
+              $('#loadLabel3').text('100%');
+              $rob3 = 2;
+              $k = 100;
+              setTimeout(function(){
+                $('#pg3').hide();
+                $('#pgr3').show();
+                $('#pgr3').text(result);
+              },500);
+            });
+          }
+
+          function loadGroup4(){
+            var jqxhr = $.post( "componants/robson_service/robson-class4.php", { start_date : $('#txt-startdate').val(), end_date : $('#txt-enddate').val(), institute: $('#txt-institute').val()},function() {});
+
+            jqxhr.done(function() {
+              $('#progress-bar4').css('width', '60%').attr('aria-valuenow', '60');
+              $('#loadLabel4').text('60%');
+              $rob4 = 1;
+              $l = 60;
+            });
+
+            jqxhr.always(function(result) {
+              $('#progress-bar4').css('width', '100%').attr('aria-valuenow', '100');
+              $('#loadLabel4').text('100%');
+              $rob4 = 2;
+              $l = 100;
+              setTimeout(function(){
+                $('#pg4').hide();
+                $('#pgr4').show();
+                $('#pgr4').text(result);
+              },500);
+            });
+          }
+
+          function loadGroup5(){
+            var jqxhr = $.post( "componants/robson_service/robson-class5.php", { start_date : $('#txt-startdate').val(), end_date : $('#txt-enddate').val(), institute: $('#txt-institute').val()},function() {});
+
+            jqxhr.done(function() {
+              $('#progress-bar5').css('width', '60%').attr('aria-valuenow', '60');
+              $('#loadLabel5').text('60%');
+              $rob5 = 1;
+              $m = 60;
+            });
+
+            jqxhr.always(function(result) {
+              $('#progress-bar5').css('width', '100%').attr('aria-valuenow', '100');
+              $('#loadLabel5').text('100%');
+              $rob5 = 2;
+              $m = 100;
+              setTimeout(function(){
+                $('#pg5').hide();
+                $('#pgr5').show();
+                $('#pgr5').text(result);
+              },500);
+            });
+          }
+
+          function iniInterval1(i){
+            setTimeout(function(){
+              if($rob1 != 2){
+                loadBar1($i);
+              }
+            },1000);
+          }
+
+          function iniInterval2(j){
+            setTimeout(function(){
+              if($rob2 != 2){
+                loadBar2($j);
+              }
+            },1000);
+          }
+
+          function iniInterval3(k){
+            setTimeout(function(){
+              if($rob3 != 2){
+                loadBar3($k);
+              }
+            },1000);
+          }
+
+          function iniInterval4(k){
+            setTimeout(function(){
+              if($rob4 != 2){
+                loadBar4($l);
+              }
+            },1000);
+          }
+
+          function iniInterval5(m){
+            setTimeout(function(){
+              if($rob5 != 2){
+                loadBar5($m);
+              }
+            },1000);
+          }
+        </script>
+        <script type="text/javascript">
+          var LoadData = function(){
+            var init = function(){
+              LoadData.loadBar(1,$i);
+            }();
+
+            var loadBar = function(){
+              
+            }
+
+          }
+
+          jQuery( function() {
+            LoadData.init();
+          });
         </script>
 
     </body>
