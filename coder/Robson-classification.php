@@ -623,7 +623,7 @@ $totalRob2 = 0; $totalRob4 = 0;
             }();
 
             var loadBar = function(){
-              
+
             }
 
           }
