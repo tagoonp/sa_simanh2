@@ -84,7 +84,7 @@ if($resultInsert){
   ?>
   <script type="text/javascript">
     swal({
-      title: "Seccess!",
+      title: "Success!",
       text: "Insert complication information success!",
       type: "success",
       showCancelButton: false,

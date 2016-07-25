@@ -99,7 +99,7 @@ if($resultInsert){
   ?>
   <script type="text/javascript">
     swal({
-      title: "Seccess!",
+      title: "Success!",
       text: "Insert obstetric information success!",
       type: "success",
       showCancelButton: false,

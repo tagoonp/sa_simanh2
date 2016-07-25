@@ -5,7 +5,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SIMANH : Inp rogress....</title>
+    <title>SIMANH : In progress....</title>
     <link rel="stylesheet" type="text/css" href="../../library/sweetalert/dist/sweetalert.css">
     <script src="../../library/sweetalert/dist/sweetalert.min.js"></script>
   </head>
@@ -40,44 +40,13 @@ if(isset($_SESSION[$sessionName.'sessID'])){
   exit();
 }
 
-if(isset($_SESSION[$sessionName.'PID'])){
-
-}else{
-  header('Location: ../../');
-  exit();
-}
-
-$strSQL = sprintf("INSERT INTO ".$tbprefix."note VALUE ('', '%s', '%s', '%s', '%s')",
-          mysql_real_escape_string($_POST['txt-note']),
-          mysql_real_escape_string(date('Y-m-d')),
-          mysql_real_escape_string($_SESSION[$sessionName.'sessUsername']),
-          mysql_real_escape_string($_SESSION[$sessionName.'PID'])
-        );
-$resultInsert = $db->insert($strSQL,false,true);
-
-if($resultInsert){
+if((!isset($_GET['user_id'])) || (!isset($_GET['to']))){
   $db->disconnect();
   ?>
   <script type="text/javascript">
     swal({
-      title: "Success!",
-      text: "Insert note success!",
-      type: "success",
-      showCancelButton: false,
-      confirmButtonColor: "teal",
-      confirmButtonText: "Go to next step",
-      closeOnConfirm: false
-    }, function(){
-      window.location = '../note.php';
-    });
-  </script>
-  <?php
-}else{
-  ?>
-  <script type="text/javascript">
-    swal({
       title: "Sorry",
-      text: "Can not insert note!",
+      text: "Can not get user ID!",
       type: "warning",
       showCancelButton: false,
       confirmButtonColor: "#DD6B55",
@@ -89,6 +58,52 @@ if($resultInsert){
   </script>
   <?php
 }
+
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."useraccount WHERE username = '%s'",
+          mysql_real_escape_string($_GET['user_id']));
+$result = $db->select($strSQL,false,true);
+
+if(!$result){
+  $db->disconnect();
+  ?>
+  <script type="text/javascript">
+    swal({
+      title: "Sorry",
+      text: "User's ID not found!",
+      type: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Go back",
+      closeOnConfirm: false
+    }, function(){
+      window.history.back();
+    });
+  </script>
+  <?php
+}
+
+$strSQL = sprintf("UPDATE ".$tbprefix."useraccount SET status = '%s' WHERE username = '%s'",
+          mysql_real_escape_string($_GET['to']),
+          mysql_real_escape_string($result[0]['username'])
+          );
+$resultUpdate = $db->update($strSQL);
+
+$db->disconnect();
+?>
+<script type="text/javascript">
+  swal({
+    title: "Success!",
+    text: "Update user account success!",
+    type: "success",
+    showCancelButton: false,
+    confirmButtonColor: "teal",
+    confirmButtonText: "Go to next step",
+    closeOnConfirm: false
+  }, function(){
+    window.location = '../users.php';
+  });
+</script>
+<?php
 
 
 ?>

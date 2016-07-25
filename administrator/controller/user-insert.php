@@ -1,12 +1,11 @@
 <?php
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SIMANH : Inp rogress....</title>
+    <title>SIMANH : In progress....</title>
     <link rel="stylesheet" type="text/css" href="../../library/sweetalert/dist/sweetalert.css">
     <script src="../../library/sweetalert/dist/sweetalert.min.js"></script>
   </head>
@@ -41,43 +40,18 @@ if(isset($_SESSION[$sessionName.'sessID'])){
   exit();
 }
 
-if(isset($_SESSION[$sessionName.'PID'])){
 
-}else{
-  header('Location: ../../');
-  exit();
-}
-
-$nbno = '';
-if(isset($_GET['nbid'])){
-  $nbno = $_GET['nbid'];
-}else{
-  ?>
-  <script type="text/javascript">
-    swal({
-      title: "Sorry",
-      text: "Newborn ID not found! - Code: err-101",
-      type: "warning",
-      showCancelButton: false,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Go back",
-      closeOnConfirm: false
-    }, function(){
-      window.history.back();
-    });
-  </script>
-  <?php
-}
-
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'",mysql_real_escape_string($nbno), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."useraccount WHERE username = '%s'",
+          mysql_real_escape_string($_POST['txt-username']));
 $result = $db->select($strSQL,false,true);
 
-if(!$result){
+if($result){
+  $db->disconnect();
   ?>
   <script type="text/javascript">
     swal({
       title: "Sorry",
-      text: "Newborn ID not found! - Code: err-102",
+      text: "Duplicate username!",
       type: "warning",
       showCancelButton: false,
       confirmButtonColor: "#DD6B55",
@@ -90,27 +64,43 @@ if(!$result){
   <?php
 }
 
-$strSQL = sprintf("DELETE FROM ".$tbprefix."outcome WHERE nb_no = '%s' and record_id = '%s'",mysql_real_escape_string($nbno), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
-$resultDel = $db->delete($strSQL);
+$strSQL = sprintf("INSERT INTO ".$tbprefix."useraccount (	username, password, reg_date, user_type_id, status)
+          VALUES ('%s', '%s', '%s', '%s', '%s')",
+          mysql_real_escape_string($_POST['txt-username']),
+          mysql_real_escape_string(md5($_POST['txt-password1'])),
+          mysql_real_escape_string(date('Y-m-d')),
+          mysql_real_escape_string($_POST['txt-usertype']),
+          mysql_real_escape_string('0')
+          );
+$resultInsert = $db->insert($strSQL, false, true);
 
-$strSQL = sprintf("DELETE FROM ".$tbprefix."other_postnatal WHERE nb_no = '%s' and record_id = '%s'",mysql_real_escape_string($nbno), mysql_real_escape_string($_SESSION[$sessionName.'PID']));
-$resultDel = $db->delete($strSQL);
+if($resultInsert){
 
+  $strSQL = sprintf("INSERT INTO ".$tbprefix."userdescription (	fname, lname, email, phone, address, institute_id, username)
+            VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            mysql_real_escape_string($_POST['txt-fname']),
+            mysql_real_escape_string($_POST['txt-lname']),
+            mysql_real_escape_string($_POST['txt-email']),
+            mysql_real_escape_string($_POST['txt-phone']),
+            mysql_real_escape_string($_POST['txt-address']),
+            mysql_real_escape_string($_POST['txt-institute']),
+            mysql_real_escape_string($_POST['txt-username'])
+            );
+  $resultInsert = $db->insert($strSQL, false, true);
 
-if($resultDel){
   $db->disconnect();
   ?>
   <script type="text/javascript">
     swal({
       title: "Success!",
-      text: "Delete newborn information success!",
+      text: "Add new user account success!",
       type: "success",
       showCancelButton: false,
       confirmButtonColor: "teal",
       confirmButtonText: "Go to next step",
       closeOnConfirm: false
     }, function(){
-      window.location = '../add-newborn.php';
+      window.location = '../users.php';
     });
   </script>
   <?php
@@ -119,7 +109,7 @@ if($resultDel){
   <script type="text/javascript">
     swal({
       title: "Sorry",
-      text: "Can not delete newborn information!",
+      text: "Can not add this institute!",
       type: "warning",
       showCancelButton: false,
       confirmButtonColor: "#DD6B55",

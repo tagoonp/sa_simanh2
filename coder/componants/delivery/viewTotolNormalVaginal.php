@@ -10,6 +10,7 @@ $strSQL = sprintf("SELECT count(*) total FROM ".$tbprefix."registerrecord a left
 $result = $db->select($strSQL,false,true);
 
 if($result){
+  // print $strSQL;
   print number_format($result[0]['total']);
 }else{
   print "-";

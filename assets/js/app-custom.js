@@ -1,23 +1,17 @@
-/*
-Document: app-custom.js
-Author: Rustheme
-Description: Write your custom code here
-*/
+function changepage(url){
+  window.location = url;
+}
 
-// Below is an example of function and its initialization
-var AppCustom = function() {
-	var showAppName = function() {
-		console.log( 'AppUI - Admin & Frontend template' );
-	};
-
-	return {
-		init: function() {
-			showAppName();
-		}
-	}
-}();
-
-// Initialize AppCustom when page loads
-jQuery( function() {
-	AppCustom.init();
-});
+function changepage_confirm(url){
+  swal({
+    title: "Are you sure?",
+     text: "You will not be able to recover this imaginary file!",
+     type: "warning",
+     showCancelButton: true,
+     confirmButtonColor: "#DD6B55",
+     confirmButtonText: "Yes, delete it!",
+     closeOnConfirm: false
+   }, function(){
+     window.location = url;
+   });
+}

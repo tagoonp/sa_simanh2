@@ -27,7 +27,7 @@ include "../dist/function/checkuser.inc.php";
         <link rel="icon" href="../assets/img/favicons/favicon.ico" />
 
         <!-- Google fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
 
         <!-- AppUI CSS stylesheets -->
         <link rel="stylesheet" id="css-font-awesome" href="../assets/css/font-awesome.css" />
@@ -121,7 +121,7 @@ include "../dist/function/checkuser.inc.php";
                             <!-- Add card -->
                             <div class="card">
                               <div class="card-header bg-teal bg-inverse">
-                                  <h4>Searcg patient's record</h4>
+                                  <h4>Search patient's record</h4>
                               </div>
                               <div class="card-block" style="padding-top: 30px;">
                                 <!-- <h3>Patient's ID or Keyword</h3> -->

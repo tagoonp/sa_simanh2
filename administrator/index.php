@@ -3,7 +3,6 @@ session_start();
 include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
-
 ?>
 <!DOCTYPE html>
 
@@ -27,7 +26,7 @@ include "../dist/function/checkuser.inc.php";
         <link rel="icon" href="../assets/img/favicons/favicon.ico" />
 
         <!-- Google fonts -->
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
 
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="../assets/js/plugins/slick/slick.min.css" />
@@ -71,12 +70,12 @@ include "../dist/function/checkuser.inc.php";
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
                         					<span class="sr-only">Toggle navigation</span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
                         					<span class="icon-bar"></span>
-                        				</button>
+                        				</button> -->
                                 <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
                         					<span class="sr-only">Toggle drawer</span>
                         					<span class="icon-bar"></span>
@@ -84,27 +83,14 @@ include "../dist/function/checkuser.inc.php";
                         					<span class="icon-bar"></span>
                         				</button>
                                 <span class="navbar-page-title">
-                        					Add new record
+                        					Admin dashboard
                         				</span>
                             </div>
 
                             <div class="collapse navbar-collapse" id="header-navbar-collapse">
-                                <!-- Header search form -->
-                                <form class="navbar-form navbar-left app-search-form" role="search">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input class="form-control" type="search" id="search-input" placeholder="Patient's keyword" />
-                                            <span class="input-group-btn">
-                              								<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
-                              							</span>
-                                        </div>
-                                    </div>
-                                </form>
-
                                 <!-- .navbar-left -->
                                 <?php include "componants/nav-left.php"; ?>
                                 <!-- .navbar-right -->
-
                             </div>
                         </div>
                         <!-- .container-fluid -->
@@ -115,73 +101,56 @@ include "../dist/function/checkuser.inc.php";
 
                 <main class="app-layout-content">
 
-                  <!-- Page Content -->
-                  <div class="container-fluid p-y-md">
-                      <!-- Stats -->
-                      <div class="row">
-                        <form class="js-validation-before form-horizontal m-t-sm" id="add-new-record1" onsubmit="return false;">
-                          <div class="col-xs-12">
-                            <!-- Add card -->
-                            <div class="card">
-                              <div class="card-header bg-teal bg-inverse">
-                                  <h4>Patient's ID or Keyword</h4>
-                              </div>
-                              <div class="card-block" style="padding-top: 30px;">
-                                <!-- <h3>Patient's ID or Keyword</h3> -->
-
-                                <div class="alert alert-info">
-                                  <p><strong>Remark!</strong>&nbsp;&nbsp;This session use for search any patient's history before adding new record. If you sure this patient's is new case (not follow-up case), you can enter patient's ID and click "Add new record" suddenly..</p>
-                                </div>
-
-                                <div class="form-group" style="padding-top: 30px;">
-                                  <div class="col-sm-12">
-                                      <div class="form-material">
-                                          <input class="form-control" type="text" id="text-patient-id" name="text-patient-id" placeholder="Please enter patient's key, such as ID No, / Passport ID / Date of bitrh [YYMMDD]" />
-                                          <label for="material-text">Patient's key <span style="color:red;">**</span></label>
-                                      </div>
-                                  </div>
-                                </div>
-
-                                <div class="row narrow-gutter">
-                                    <div class="col-xs-12 text-left">
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                        <button type="submit" id="btnSearch1"class="btn btn-app-teal"><i class="ion-search"></i> Search history</button>
-                                        <button type="button" id="btnAddnew1" class="btn btn-app-red"><i class="ion-plus"></i> Add new record</button>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- End card -->
-                          </div>
-                        </form>
-                      </div>
-                      <!-- End row -->
-
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="card">
-                            <div class="card-header bg-green bg-inverse">
-                                <h4>Histories record</h4>
-                            </div>
-                            <div class="card-block">
-                              <p>
-                                <span id="historyResult">No result</span>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-
-
+                    <!-- Page Content -->
+                    <div class="container-fluid p-y-md">
+                    </div>
                 </main>
 
             </div>
             <!-- .app-layout-container -->
         </div>
         <!-- .app-layout-canvas -->
-        <div class="app-ui-mask-modal"></div>
 
+        <!-- Apps Modal -->
+        <!-- Opens from the button in the header -->
+        <div id="apps-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-sm modal-dialog modal-dialog-top">
+                <div class="modal-content">
+                    <!-- Apps card -->
+                    <div class="card m-b-0">
+                        <div class="card-header bg-app bg-inverse">
+                            <h4>Apps</h4>
+                            <ul class="card-actions">
+                                <li>
+                                    <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-block">
+                            <div class="row text-center">
+                                <div class="col-xs-6">
+                                    <a class="card card-block m-b-0 bg-app-secondary bg-inverse" href="index.html">
+                                        <i class="ion-speedometer fa-4x"></i>
+                                        <p>Admin</p>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a class="card card-block m-b-0 bg-app-tertiary bg-inverse" href="frontend_home.html">
+                                        <i class="ion-laptop fa-4x"></i>
+                                        <p>Frontend</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .card-block -->
+                    </div>
+                    <!-- End Apps card -->
+                </div>
+            </div>
+        </div>
+        <!-- End Apps Modal -->
+
+        <div class="app-ui-mask-modal"></div>
 
         <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
         <script src="../assets/js/core/jquery.min.js"></script>
@@ -193,12 +162,23 @@ include "../dist/function/checkuser.inc.php";
         <script src="../assets/js/app-custom.js"></script>
 
         <!-- Page Plugins -->
-        <script src="../library/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="../assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-        <!-- Page JS Code -->
-        <!-- <script src="../dist/page/login/js/base_forms_validation.js"></script> -->
-        <script src="../dist/page/searchrecord/js/base_forms_validation.js"></script>
+        <script src="../assets/js/plugins/slick/slick.min.js"></script>
+        <script src="../assets/js/plugins/chartjs/Chart.min.js"></script>
+        <script src="../assets/js/plugins/flot/jquery.flot.min.js"></script>
+        <script src="../assets/js/plugins/flot/jquery.flot.pie.min.js"></script>
+        <script src="../assets/js/plugins/flot/jquery.flot.stack.min.js"></script>
+        <script src="../assets/js/plugins/flot/jquery.flot.resize.min.js"></script>
 
+        <!-- Page JS Code -->
+        <script src="../assets/js/pages/index.js"></script>
+
+        <script>
+            $(function()
+            {
+                // Init page helpers (Slick Slider plugin)
+                App.initHelpers('slick');
+            });
+        </script>
 
     </body>
 

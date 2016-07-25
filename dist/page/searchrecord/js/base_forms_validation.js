@@ -54,15 +54,15 @@ $(function(){
     }
   });
 
-	$('#text-patient-id').keyup(function(){
-		if($('#text-patient-id').val()!=''){
-      var jqxhr = $.post( "controller/searchrecord-likely.php", { keyword : $('#text-patient-id').val() },function() {});
-
-      jqxhr.always(function(result) {
-        $('#historyResult').html(result);
-      });
-    }
-	});
+	// $('#text-patient-id').keyup(function(){
+	// 	if($('#text-patient-id').val()!=''){
+  //     var jqxhr = $.post( "controller/searchrecord-likely.php", { keyword : $('#text-patient-id').val() },function() {});
+	//
+  //     jqxhr.always(function(result) {
+  //       $('#historyResult').html(result);
+  //     });
+  //   }
+	// });
 
   $('#btnAddnew1').click(function(){
     if($('#text-patient-id').val()!=''){

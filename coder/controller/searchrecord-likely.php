@@ -8,7 +8,7 @@ $tbprefix = $db->getTablePrefix();
 $sessionName = $db->getSessionname();
 
 // $strSQL = "SELECT * FROM ".$tbprefix."registerrecord WHERE pid like '".$_POST['keyword']."%' or REPLACE(pid, ' ','') like '".$_POST['keyword']."%' ORDER BY date_adm DESC";
-$strSQL = "SELECT * FROM ".$tbprefix."registerrecord WHERE pid like '".$_POST['keyword']."%' or REPLACE(pid, ' ','') like '".trim($_POST['keyword'])."%' ORDER BY date_adm DESC";
+$strSQL = "SELECT * FROM ".$tbprefix."registerrecord WHERE (pid LIKE '".$_POST['keyword']."%' or REPLACE(pid, ' ','') like '".trim($_POST['keyword'])."%') AND username in (SELECT username FROM ".$tbprefix."userdescription WHERE institute_id in (SELECT institute_id FROM ".$tbprefix."userdescription WHERE username = '".$_SESSION[$sessionName.'sessUsername']."') )  ORDER BY date_adm DESC";
 $result = $db->select($strSQL,false,true);
 
 ?>

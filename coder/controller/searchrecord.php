@@ -7,8 +7,10 @@ $db->connect();
 $tbprefix = $db->getTablePrefix();
 $sessionName = $db->getSessionname();
 
-$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE pid = '%s' ORDER BY date_adm DESC",
-          mysql_real_escape_string($_POST['keyword']));
+$strSQL = sprintf("SELECT * FROM ".$tbprefix."registerrecord WHERE pid = '%s' AND username in (SELECT username FROM ".$tbprefix."userdescription WHERE institute_id in (SELECT institute_id FROM ".$tbprefix."userdescription WHERE username = '%s') ) ORDER BY date_adm DESC",
+          mysql_real_escape_string($_POST['keyword']),
+          mysql_real_escape_string($_SESSION[$sessionName.'sessUsername'])
+        );
 $result = $db->select($strSQL,false,true);
 
 ?>

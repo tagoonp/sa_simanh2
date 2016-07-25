@@ -4,10 +4,10 @@ include "../database/database.class.php";
 include "../dist/function/session.inc.php";
 include "../dist/function/checkuser.inc.php";
 
-// $start_date = date('Y')."-01-01";
-$start_date = "2015-01-01";
-// $end_date = date('Y-m')."-31";
-$end_date = "2015-12-31";
+$start_date = date('Y')."-01-01";
+// $start_date = "2015-01-01";
+$end_date = date('Y-m')."-31";
+// $end_date = "2015-12-31";
 
 if(isset($_GET['startdate'])){ $start_date = $_GET['startdate']; }
 if(isset($_GET['enddate'])){ $end_date = $_GET['enddate']; }
@@ -40,7 +40,7 @@ $totalAOD = 0;
         <link rel="icon" href="../assets/img/favicons/favicon.ico" />
 
         <!-- Google fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
 
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="../assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css" />
